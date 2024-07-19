@@ -4,7 +4,7 @@
 public abstract class Room {
     protected int roomName; //attribute for the room's name
     protected double roomPrice; // attribute for the room's price
-    private final int[] reservedDates; //array of integers that serves as a record of the room's reserved dates.
+    private int[] reservedDates; //array of integers that serves as a record of the room's reserved dates.
     //(E.g. If only Day 1 is reserved, reservedDates[0] = 1 and reservedDates[1] onwards is 0.)
 
     /**
