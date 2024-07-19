@@ -65,6 +65,7 @@ public class ReservationSystem {
      *
      * @param hotel        the selected hotel
      * @param newHotelName the new name of the hotel
+     * @return true if the hotel name change is successful; false otherwise.
      */
     public boolean changeHotelName(Hotel hotel, String newHotelName){
         if(this.selectHotel(newHotelName) == null && hotel != null){

@@ -5,6 +5,10 @@ import java.util.ArrayList;
  */
 public class ReservationManager {
     private ArrayList<Reservation> reserveList; //attribute for list of reservations
+
+    /**
+     * Constructs the reservation manager.
+     */
     public ReservationManager(){
         this.reserveList = new ArrayList<Reservation>();
     }
@@ -21,6 +25,7 @@ public class ReservationManager {
     /**
      * Adds a reservation to the hotel for a specified guest and date range.
      *
+     * @param hotel the hotel the guest will reserve in
      * @param guestName The name of the guest.
      * @param checkInDate The check-in date.
      * @param checkOutDate The check-out date.

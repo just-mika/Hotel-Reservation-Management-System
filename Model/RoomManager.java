@@ -7,6 +7,9 @@ import java.util.ArrayList;
 public class RoomManager {
     private ArrayList<Room> roomList; //attribute for the list of rooms
 
+    /**
+     * Constructs a room manager.
+     */
     public RoomManager(){
         this.roomList = new ArrayList<Room>();
     }
@@ -15,6 +18,7 @@ public class RoomManager {
      * Adds a new room to the hotel.
      *
      * @param type the type of room to add.
+     * @param hotel the hotel to add a room to.
      */
     public void addRoom(Hotel hotel, String type) {
         if(type == null)
@@ -78,6 +82,7 @@ public class RoomManager {
     /**
      * Gets the total number of rooms in the hotel with a given type.
      *
+     * @param type the type of room to count.
      * @return The total number of rooms of the given type.
      */
     public int countRooms(String type){

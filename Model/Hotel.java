@@ -86,14 +86,29 @@ public class Hotel {
             throw new IllegalArgumentException("Base Price cannot be less than 100.0!");
         this.basePrice = price;
     }
-
+    /**
+     * Gets the hotel's room manager.
+     *
+     * @return The hotel's room manager.
+     */
     public RoomManager getRoomManager(){
         return this.roomManager;
     }
+
+    /**
+     * Gets the hotel's reservation manager.
+     * 
+     * @return The hotel's reservation manager.
+     */
     public ReservationManager getReservationManager(){
         return this.reservationManager;
     }
 
+    /**
+     * Gets the hotel's date price rate manager.
+     *
+     * @return The hotel's date price rate manager.
+     */
     public DatePriceManager getDatePriceManager(){
         return this.datePriceManager;
     }
