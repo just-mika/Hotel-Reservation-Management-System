@@ -440,15 +440,6 @@ public class Hotel {
     }
 
     /**
-     * Gets the total number of rooms in the hotel, regardless of their type.
-     *
-     * @return The total number of rooms.
-     */
-    public int getTotalRooms() {
-        return roomList.size();
-    }
-
-    /**
      * Gets the list of reservations in the hotel.
      *
      * @return The list of reservations.
@@ -458,30 +449,12 @@ public class Hotel {
     }
 
     /**
-     * Gets the total number of reservations in the hotel.
-     *
-     * @return The total number of reservations.
-     */
-    public int getTotalReservations() {
-        return reserveList.size();
-    }
-
-    /**
      * Gets the base price of a room.
      *
      * @return The base price of a room.
      */
     public double getBasePrice(){
         return basePrice;
-    }
-
-    /**
-     * Gets the list of dates with their price rates.
-     *
-     * @return The list of DatePriceRates
-     */
-    public ArrayList<DatePriceRate> getDatePriceRateList(){
-        return datePriceRateList;
     }
 
     /**
