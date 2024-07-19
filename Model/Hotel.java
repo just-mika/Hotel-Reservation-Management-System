@@ -6,9 +6,9 @@ import java.util.ArrayList;
  */
 public class Hotel {
     private String hotelName; //attribute for hotel name
-    private final ArrayList<Room> roomList; //attribute for the list of rooms
-    private final ArrayList<Reservation> reserveList; //attribute for list of reservations
-    private final ArrayList<DatePriceRate> datePriceRateList; //attribute for list of date price rates
+    private ArrayList<Room> roomList; //attribute for the list of rooms
+    private ArrayList<Reservation> reserveList; //attribute for list of reservations
+    private ArrayList<DatePriceRate> datePriceRateList; //attribute for list of date price rates
     private double basePrice; //attribute for the room base price
 
     /**
