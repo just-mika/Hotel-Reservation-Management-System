@@ -187,15 +187,15 @@ public class ReservationSystem {
         //only reserve a room if hotel exists, guest has yet to reserve, and dateCount is not zero
         if(hotel != null && hotel.findReservation(guestName) == null && dateCount > 1) {
             if(discount.equals("I_WORK_HERE"))
-                return hotel.addReservation(guestName, checkInDate, checkOutDate, "I_WORK_HERE");
+                return hotel.addReservation(guestName, checkInDate, checkOutDate, roomType, "I_WORK_HERE");
             else if(discount.equals("STAY4_GET1")){
                 if(checkOutDate - checkInDate >= 5) //only apply discount if reservation has 5 days or more
-                    return hotel.addReservation(guestName, checkInDate, checkOutDate, "STAY4_GET1");
+                    return hotel.addReservation(guestName, checkInDate, checkOutDate, roomType, "STAY4_GET1");
             }
             else if(discount.equals("PAYDAY")){
                 boolean applyDiscount = checkPayDay(checkInDate, checkOutDate); //helper function to check if 15 or 30 are in the dates
                 if(applyDiscount) //only apply discount if discount is in there
-                    return hotel.addReservation(guestName, checkInDate, checkOutDate, "PAYDAY");
+                    return hotel.addReservation(guestName, checkInDate, checkOutDate, roomType, "PAYDAY");
             }
             //if not applied, just create a regular reservation
             return hotel.addReservation(guestName, checkInDate, checkOutDate, roomType);
