@@ -4,7 +4,7 @@ import java.util.ArrayList;
  */
 
 public class ReservationSystem {
-    private final ArrayList<Hotel> hotelList; //attribute for the list of hotels
+    private ArrayList<Hotel> hotelList; //attribute for the list of hotels
 
     /**
      * Constructs the reservation system.
