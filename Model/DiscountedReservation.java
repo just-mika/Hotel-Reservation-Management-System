@@ -3,7 +3,7 @@
  */
 
 public class DiscountedReservation extends Reservation {
-    private final String discount; //attribute for the discount code
+    private String discount; //attribute for the discount code
 
     /**
      * Constructs a new reservation.
