@@ -9,7 +9,7 @@ public class ExecutiveRoom extends Room{
      */
     public ExecutiveRoom(Hotel hotel) {
         super(hotel); //Instantiate a new room through the Room class
-        this.roomName = 301 + hotel.countRooms("Executive");
+        this.roomName = 301 + hotel.getRoomManager().countRooms("Executive");
         //Automated naming for room. Use 301 as a base, then add depending on the current number of Executive rooms.
         this.roomPrice += this.roomPrice * 0.35; //Add 35% of the base price to the current price.
     }

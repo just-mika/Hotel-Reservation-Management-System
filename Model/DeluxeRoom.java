@@ -9,7 +9,7 @@ public class DeluxeRoom extends Room{
      */
     public DeluxeRoom(Hotel hotel){
         super(hotel); //Instantiate a new room through the Room class
-        this.roomName = 201 + hotel.countRooms("Deluxe");
+        this.roomName = 201 + hotel.getRoomManager().countRooms("Deluxe");
         //Automated naming for room. Use 201 as a base, then add depending on the current number of Deluxe rooms.
         this.roomPrice += this.roomPrice * 0.20; //Add 20% of the base price to the current price.
     }

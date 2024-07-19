@@ -9,7 +9,7 @@ public class StandardRoom extends Room {
      */
     public StandardRoom(Hotel hotel){
         super(hotel); //Instantiate a new room through the Room class
-        this.roomName = 101 + hotel.countRooms("Standard");
+        this.roomName = 101 + hotel.getRoomManager().countRooms("Standard");
         //Automated naming for room. Use 101 as a base, then add depending on the current number of Standard rooms.
     }
 

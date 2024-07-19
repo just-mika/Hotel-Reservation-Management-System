@@ -16,7 +16,8 @@ public class DiscountedReservation extends Reservation {
      */
     public DiscountedReservation(String guestName, Room room, int checkInDate, int checkOutDate, String discount){
         super(guestName, room, checkInDate, checkOutDate); //Instantiate a new reservation through the Reservation class
-        if(!(discount.equals("I_WORK_HERE") || discount.equals("STAY4_GET1") || discount.equals("PAYDAY")))
+        if(!(discount.equals("I_WORK_HERE") || discount.equals("STAY4_GET1")
+                || discount.equals("PAYDAY")))
             throw new IllegalArgumentException("Discount code does not exist.");
         this.discount = discount; //set the discount as the given discount code.
     }
@@ -47,7 +48,7 @@ public class DiscountedReservation extends Reservation {
         if(discount.equals("STAY4_GET1") && date == checkInDate){
             return 0.0; //Check-in date is free if the STAY4_GET1 code is applied.
         }
-        return room.roomPrice * hotel.findDate(date).getRate();
+        return room.roomPrice * hotel.getDatePriceManager().findDate(date).getRate();
     }
 
     /**

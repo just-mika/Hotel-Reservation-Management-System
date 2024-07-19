@@ -88,7 +88,7 @@ public class Reservation {
             throw new IllegalArgumentException("Date not within the range of 1 to 31!");
         if(hotel == null)
             throw new NullPointerException("Hotel can't be null!");
-        return room.getRoomPrice() * hotel.findDate(date).getRate();
+        return room.getRoomPrice() * hotel.getDatePriceManager().findDate(date).getRate();
     }
 
     /**
