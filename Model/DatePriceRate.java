@@ -2,7 +2,7 @@
  * Represents the rate for a specific date.
  */
 public class DatePriceRate{
-    private final int date; //attribute for the date
+    private int date; //attribute for the date
     private double rate; //attribute for the respective rate
 
     /**
