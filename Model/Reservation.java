@@ -3,10 +3,10 @@
  */
 
 public class Reservation {
-    protected final String guestName; //attribute representing guest's name
-    protected final Room room; //attribute representing the reserved room
-    protected final int checkInDate; //attribute representing the check-in date
-    protected final int checkOutDate; //attribute representing the check-out date
+    protected String guestName; //attribute representing guest's name
+    protected Room room; //attribute representing the reserved room
+    protected int checkInDate; //attribute representing the check-in date
+    protected int checkOutDate; //attribute representing the check-out date
 
     /**
      * Constructs a new reservation.
