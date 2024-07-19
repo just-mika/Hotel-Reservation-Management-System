@@ -7,6 +7,9 @@ import java.util.ArrayList;
 public class DatePriceManager {
     private ArrayList<DatePriceRate> datePriceRateList; //attribute for list of date price rates
 
+    /**
+     * Constructs the date price manager of a hotel.
+     */
     public DatePriceManager(){
         this.datePriceRateList = new ArrayList<DatePriceRate>();
 

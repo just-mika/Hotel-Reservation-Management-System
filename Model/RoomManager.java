@@ -17,8 +17,8 @@ public class RoomManager {
     /**
      * Adds a new room to the hotel.
      *
-     * @param type the type of room to add.
      * @param hotel the hotel to add a room to.
+     * @param type the type of room to add.
      */
     public void addRoom(Hotel hotel, String type) {
         if(type == null)

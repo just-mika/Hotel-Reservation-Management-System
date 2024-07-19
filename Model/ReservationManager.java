@@ -61,6 +61,7 @@ public class ReservationManager {
     /**
      * Adds a reservation to the hotel for a specified guest and date range with a given discount code.
      *
+     * @param hotel the hotel the guest will reserve in
      * @param guestName The name of the guest.
      * @param checkInDate The check-in date.
      * @param checkOutDate The check-out date.
