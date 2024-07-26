@@ -10,13 +10,12 @@ import java.util.List;
 public class ViewHotelView {
     private JFrame mainFrame;
     private JLabel titleLbl, titleLbl_1, titleLbl_2, titleLbl_3, chooseLbl, feedbackLbl, feedbackLbl_2, feedbackLbl_3, feedbackLbl_4, hotelNameLbl, NumRoomLbl, MnthEarnLbl, titleLbl_4, titleLbl_5, titleLbl_6, titleLbl_7, titleLbl_8, titleLbl_9;
-    //private JButton hotelListButtons; buttons for hotel names created
     private JLabel showAvailRoomLbl, totalBookedLbl, roomNameLbl, roomTypeLbl, roomPriceLbl, reservedDatesLbl, guestNameLbl, roomNumLbl, checkInLbl, checkOutLbl, pricePerNytLbl, totalPriceLbl, inputDateLbl, inputRoomNameLbl, inputReservaLbl;
     private JButton highInfoBtn, lowInfoBtn, backToMainBtn, backBtn;
-    private JPanel highLvlPanel, lowLvlPanel, hotelListPanel, mainPanel, cardPanel, chkAvailPanel, viewRoomPanel, viewReservePanel, inputDatePanel, roomListPanel, reservationListPanel; //low lvl drop down menu?
+    private JPanel highLvlPanel, lowLvlPanel, hotelListPanel, mainPanel, cardPanel, chkAvailPanel, viewRoomPanel, viewReservePanel, inputDatePanel, roomListPanel, reservationListPanel; 
     private JButton backToViewBtn_1, viewBtn, checkBtn, chooseRoomBtn, chooseReserveBtn;
-    private JTextField chooseHotelTF, inputDateTF, inputRoomNameTF, inputReserveTF; //write hotel chosen
-    private JButton chkAvailBtn, viewRoomBtn, viewReserveBtn, backToViewBtn_2, backToLowBtn_1, backToLowBtn_2, backToLowBtn_3; //Btns for Low Lvl
+    private JTextField chooseHotelTF, inputDateTF, inputRoomNameTF, inputReserveTF; 
+    private JButton chkAvailBtn, viewRoomBtn, viewReserveBtn, backToViewBtn_2, backToLowBtn_1, backToLowBtn_2, backToLowBtn_3;
     private JTextArea hotelListTA;
     private JLabel hotelFeedbackLbl, dateFeedBackLbl;
 
@@ -115,7 +114,7 @@ public class ViewHotelView {
 
         this.feedbackLbl = new JLabel("");
         this.feedbackLbl.setPreferredSize(new Dimension(620, 30));
-        this.feedbackLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+        this.feedbackLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,20));
 
         this.hotelFeedbackLbl = new JLabel("");
         this.hotelFeedbackLbl.setPreferredSize(new Dimension(620, 30));

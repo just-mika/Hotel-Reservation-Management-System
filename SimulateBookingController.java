@@ -32,12 +32,6 @@ public class SimulateBookingController {
             }
         });
 
-        /*this.sbView.goToRoomInfoAL(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sbView.switchPanel("ShowRoomPanel");
-            }
-        });*/
 
         this.sbView.goToRoomInfoAL(new ActionListener() {
     @Override
@@ -124,34 +118,6 @@ public class SimulateBookingController {
     }
 });
 
-        /*this.sbView.backToGuestInfoAL(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sbView.switchPanel("GuestInfoPanel");
-            }
-        });
-
-        this.sbView.goToDiscountAL(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sbView.switchPanel("EnterDiscountPanel");
-            }
-        });
-
-        this.sbView.goToDiscountAL_2(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sbView.switchPanel("EnterDiscountPanel");
-            }
-        });
-
-        this.sbView.goToDiscountAL_3(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sbView.switchPanel("EnterDiscountPanel");
-            }
-        });*/
-
 
         this.sbView.backToMainAL(new ActionListener() {
             @Override
@@ -160,21 +126,34 @@ public class SimulateBookingController {
                 mController.showMainMenuView(true);
                 sbView.switchPanel("HotelListPanel");
                 sbView.setFeedbackLbl_3("");
+                sbView.setFeedbackLbl("");
             }
         });
+
+
+        this.sbView.backToMainAL_2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sbView.close(false);
+                mController.showMainMenuView(true);
+                sbView.switchPanel("HotelListPanel");
+                sbView.setFeedbackLbl("");
+            }
+        });
+
     }
     
     public void showSimulateBookView(boolean result) {
         sbView.show(result);
     }
 
-    public void displayHotels() {
-        StringBuilder sb = new StringBuilder();
-        for (Hotel hotel : rs.getHotelList()) {
-            sb.append(" - ").append(hotel.getHotelName());
+    public void displayHotels(){
+        StringBuilder displayTxt = new StringBuilder();
+        for(Hotel hotel : rs.getHotelList()){
+            displayTxt.append(hotel.getHotelName()).append("\n");
         }
 
-        sbView.setHotelList(sb.toString());
+        sbView.setHotelListTA(displayTxt.toString());
     }
 }
     

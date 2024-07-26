@@ -83,11 +83,9 @@ public class MainMenuView {
         this.viewHotelBtn.addActionListener(al);
     }
 
-
     public void manageHotelAL(ActionListener al){
         this.manageHotelBtn.addActionListener(al);
     }
-
 
     public void bookRoomAL(ActionListener al){
         this.bookRoomBtn.addActionListener(al);

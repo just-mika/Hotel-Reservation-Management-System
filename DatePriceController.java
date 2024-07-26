@@ -42,7 +42,7 @@ public class DatePriceController {
 
                 if (response == JOptionPane.YES_OPTION) {
                     boolean change = rs.modifyDatePrice(selectedHotel, date, percentage);
-
+                    dpView.setFeedbackLbl("");
                     if (change) {
                         selectedHotel.getBasePrice();
                         //dpView.setFeedbackLbl_2("Changing " +percentage+ " % to date "+date );
@@ -64,19 +64,29 @@ public class DatePriceController {
                 
             }
         });
+
+        this.dpView.backToMainAL_2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dpView.close(false);
+                mController.showMainMenuView(true);
+                dpView.switchPanel("HotelListPanel");
+                dpView.setFeedbackLbl("");
+            }
+        });
     }
     
     public void showDatePriceView(boolean result) {
         dpView.show(result);
     }
 
-    public void displayHotels() {
-        StringBuilder sb = new StringBuilder();
-        for (Hotel hotel : rs.getHotelList()) {
-            sb.append(" - ").append(hotel.getHotelName());
+    public void displayHotels(){
+        StringBuilder displayTxt = new StringBuilder();
+        for(Hotel hotel : rs.getHotelList()){
+            displayTxt.append(hotel.getHotelName()).append("\n");
         }
 
-        dpView.setHotelList(sb.toString());
+        dpView.setHotelListTA(displayTxt.toString());
     }
     
 }

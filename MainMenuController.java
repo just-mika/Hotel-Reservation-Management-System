@@ -17,8 +17,8 @@ public class MainMenuController {
         this.chController = new CreateHotelController(this, rs);
         this.vController = new ViewHotelController(this, rs);
         this.mhController = new ManageHotelController(this, rs);
-        this.sbController = new SimulateBookingController(this);
-        this.dpController = new DatePriceController(this);
+        this.sbController = new SimulateBookingController(this, rs);
+        this.dpController = new DatePriceController(this, rs);
         this.eView = new ExitView();
         this.rs = rs;
 
@@ -43,7 +43,6 @@ public class MainMenuController {
         });
 
         this.mView.manageHotelAL(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 mhController.displayHotels();
@@ -55,6 +54,7 @@ public class MainMenuController {
         this.mView.bookRoomAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                sbController.displayHotels();
                 mView.close(false);
                 sbController.showSimulateBookView(true);
             }
@@ -63,6 +63,7 @@ public class MainMenuController {
         this.mView.modifyPriceAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dpController.displayHotels();
                 mView.close(false);
                 dpController.showDatePriceView(true);
             }
@@ -92,6 +93,8 @@ public class MainMenuController {
         this.mView.setBookRoomEnabled(showButtons);
         this.mView.setModifyPrice(showButtons);
     }
+
+
     private void startExitTimer() {
         Timer timer = new Timer(2000, new ActionListener() {
             @Override

@@ -71,12 +71,14 @@ public class ViewHotelController {
                 } else {
                     vView.setFeedbackLbl_2("Please enter a valid date between 1 and 31.");
                 }
+
             }
         });
         this.vView.backToLowAL_1(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vView.switchPanel("LowLvlPanel");
+                vView.setFeedbackLbl_2("");
             }
         });
 
@@ -119,6 +121,7 @@ public class ViewHotelController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vView.switchPanel("LowLvlPanel");
+                vView.setFeedbackLbl_3("");
             }
         });
 
@@ -204,5 +207,6 @@ public class ViewHotelController {
 
         vView.setHotelListTA(displayTxt.toString());
     }
+    
     
 }

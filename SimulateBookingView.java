@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import java.awt.event.ActionListener;
@@ -17,10 +19,11 @@ import java.awt.CardLayout;
 public class SimulateBookingView {
     private JFrame mainFrame;
     private JLabel menuLbl, titleLbl, titleLbl_1, titleLbl_2, titleLbl_3, titleLbl_4, titleLbl_5, chooseLbl, feedbackLbl, feedbackLbl_2, feedbackLbl_3, feedbackLbl_4, feedbackLbl_5,
-    enterNameLbl, enterCheckInLbl, enterCheckOutLbl, roomTypeLbl, enterDiscLbl, hotelListLbl, guestNameLbl, checkInLbl, checkOutLbl, roomTypeLbl_2, discountLbl;
-    private JButton backToMainBtn, enterBtn, StandardBtn, DeluxeBtn, ExecBtn, backBtn, chooseBtn, enterBtn_2;
-    private JPanel hotelListPanel, guestInfoPanel, showRoomPanel, cardPanel, roomTypePanel, enterDiscountPanel; 
+    enterNameLbl, enterCheckInLbl, enterCheckOutLbl, roomTypeLbl, hotelListLbl, guestNameLbl, checkInLbl, checkOutLbl, roomTypeLbl_2, discountLbl, hotelFeedbackLbl;
+    private JButton backToMainBtn, enterBtn, chooseBtn, backBtn;
+    private JPanel hotelListPanel, guestInfoPanel, showRoomPanel, cardPanel;
     private JTextField guestNameTF, checkInTF, checkOutTF, chooseHotelTF, enterDiscountTF, roomTypeTF;
+    private JTextArea hotelListTA;
     
 
     private ImageIcon titleImageIcon, titleImageIcon_1, titleImageIcon_2, logoImageIcon;
@@ -66,34 +69,48 @@ public class SimulateBookingView {
 
 
         //Hotel Panel
-        this.chooseLbl = new JLabel("Hotels: "); 
+        this.chooseLbl = new JLabel("Hotels: ", JLabel.CENTER);
         this.chooseLbl.setPreferredSize(new Dimension(620, 30));
-        this.chooseLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,20));
-
-        this.hotelListLbl = new JLabel("");
-        this.hotelListLbl.setPreferredSize(new Dimension(620, 30));
-        this.hotelListLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,20));
+        this.chooseLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
         this.chooseHotelTF = new JTextField();
         this.chooseHotelTF.setColumns(20);
         this.chooseHotelTF.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.chooseBtn = new JButton("Book");
-        this.chooseBtn.setPreferredSize(new Dimension(100, 30));
-        this.chooseBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
         this.feedbackLbl = new JLabel("");
         this.feedbackLbl.setPreferredSize(new Dimension(620, 30));
         this.feedbackLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
+        this.chooseBtn = new JButton("Book");
+        this.chooseBtn.setPreferredSize(new Dimension(100, 30));
+        this.chooseBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        this.backBtn = new JButton("Back to Main Menu");
+        this.backBtn.setPreferredSize(new Dimension(220, 30));
+        this.backBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        this.hotelListTA = new JTextArea("");
+        this.hotelListTA.setPreferredSize(new Dimension(330, 100));
+        this.hotelListTA.setEditable(false);
+        JScrollPane scroll = new JScrollPane(hotelListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setPreferredSize(new Dimension(330, 100));
+
+        JPanel listPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        listPanel.add(chooseLbl);
+        listPanel.add(scroll);
+        listPanel.setPreferredSize(new Dimension(620, 1080));
+
+        JPanel chooseHotelPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        chooseHotelPanel.add(chooseHotelTF);
+        chooseHotelPanel.add(chooseBtn);
+        chooseHotelPanel.add(backBtn);
+
         hotelListPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        hotelListPanel.add(titleLbl_1);
-        hotelListPanel.add(chooseLbl);
-        hotelListPanel.add(hotelListLbl);
-        hotelListPanel.add(chooseHotelTF);
-        hotelListPanel.add(chooseBtn);
-        hotelListPanel.add(feedbackLbl);
         hotelListPanel.setPreferredSize(new Dimension(650, 1080));
+        hotelListPanel.add(titleLbl_1);
+        hotelListPanel.add(feedbackLbl);
+        hotelListPanel.add(chooseHotelPanel);
+        hotelListPanel.add(listPanel);
 
         //Input guest Info 
         this.enterNameLbl = new JLabel("Enter Guest Name: ");
@@ -201,77 +218,12 @@ public class SimulateBookingView {
         showRoomPanel.add(roomTypeLbl_2);
         showRoomPanel.add(discountLbl);
         showRoomPanel.add(backToMainBtn);
-        //showRoomPanel.add(feedbackLbl_3);
-
-        //room type panel
-        /*this.roomTypeLbl = new JLabel("Choose a Room Type: ");
-        this.roomTypeLbl.setBounds(230, 50, 650, 30);
-        this.roomTypeLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        this.StandardBtn = new JButton("Standard Room");
-        this.StandardBtn.setPreferredSize(new Dimension(650, 30));
-        this.StandardBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        this.DeluxeBtn = new JButton("Deluxe Room");
-        this.DeluxeBtn.setPreferredSize(new Dimension(650, 30));
-        this.DeluxeBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        this.ExecBtn = new JButton("Executive Room");
-        this.ExecBtn.setPreferredSize(new Dimension(650, 30));
-        this.ExecBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        this.backBtn = new JButton("Back To Guest Information");
-        this.backBtn.setPreferredSize(new Dimension(650, 30));
-        this.backBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        this.feedbackLbl_4 = new JLabel("");
-        this.feedbackLbl_4.setPreferredSize(new Dimension(620, 30));
-        this.feedbackLbl_4.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        roomTypePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        roomTypePanel.setPreferredSize(new Dimension(650, 1080));
-        roomTypePanel.add(titleLbl_4);
-        roomTypePanel.add(roomTypeLbl);
-        roomTypePanel.add(StandardBtn);
-        roomTypePanel.add(DeluxeBtn);
-        roomTypePanel.add(ExecBtn);
-        roomTypePanel.add(backBtn);
-        roomTypePanel.add(feedbackLbl_4);*/
-
-        //enter discode
-        /*this.enterDiscLbl = new JLabel("Enter Discount Code: ");
-        this.enterDiscLbl.setBounds(230, 250, 1950, 50);
-        this.enterDiscLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        this.enterDiscountTF = new JTextField();
-        this.enterDiscountTF.setColumns(20);
-        this.enterDiscountTF.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        this.enterBtn_2 = new JButton("Enter");
-        this.enterBtn_2.setPreferredSize(new Dimension(100, 30));
-        this.enterBtn_2.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        this.feedbackLbl_5 = new JLabel("");
-        this.feedbackLbl_5.setPreferredSize(new Dimension(620, 30));
-        this.feedbackLbl_5.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
-        enterDiscountPanel  = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        enterDiscountPanel.setPreferredSize(new Dimension(650, 1080));
-        enterDiscountPanel.add(titleLbl_5);
-        enterDiscountPanel.add(enterDiscLbl);
-        enterDiscountPanel.add(enterDiscountTF);
-        enterDiscountPanel.add(enterBtn_2);
-        enterDiscountPanel.add(feedbackLbl_5);*/
-
 
         cardPanel = new JPanel(new CardLayout());
         cardPanel.add(hotelListPanel, "HotelListPanel");
         cardPanel.add(guestInfoPanel, "GuestInfoPanel");
         cardPanel.add(showRoomPanel, "ShowRoomPanel");
         
-        //choose type, enter discode (maybe JOP)
-        //cardPanel.add(roomTypePanel, "RoomTypePanel");
-        //cardPanel.add(enterDiscountPanel, "EnterDiscountPanel");
 
         mainFrame.add(cardPanel);
 
@@ -282,33 +234,16 @@ public class SimulateBookingView {
         this.chooseBtn.addActionListener(al);
     }
 
-    /*public void goToRoomInfoAL(ActionListener al){
-        this.enterBtn_2.addActionListener(al);
-    }*/
-
     public void goToRoomInfoAL(ActionListener al){
         this.enterBtn.addActionListener(al);
     }
 
-    
-    /*public void backToGuestInfoAL(ActionListener al){
-        this.backBtn.addActionListener(al);
-    }
- 
-    public void goToDiscountAL(ActionListener al){
-        this.StandardBtn.addActionListener(al);
-    }
-
-    public void goToDiscountAL_2(ActionListener al){
-        this.DeluxeBtn.addActionListener(al);
-    }
-
-    public void goToDiscountAL_3(ActionListener al){
-        this.ExecBtn.addActionListener(al);
-    }*/
-
     public void backToMainAL(ActionListener al){
         this.backToMainBtn.addActionListener(al);
+    }
+
+    public void backToMainAL_2(ActionListener al){
+        this.backBtn.addActionListener(al);
     }
 
     public void show(boolean visible) {
@@ -407,6 +342,10 @@ public class SimulateBookingView {
 
     public String getDiscountText() {
         return enterDiscountTF.getText();
+    }
+
+    public void setHotelListTA(String text) {
+        this.hotelListTA.setText(text);
     }
 
     public void displayRoomInfo(Hotel hotel, String guestName, int checkIn, int checkOut, String roomType, String discountCode) {
