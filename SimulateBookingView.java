@@ -3,15 +3,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import java.awt.event.ActionListener;
 import java.awt.CardLayout;
@@ -24,7 +17,7 @@ public class SimulateBookingView {
     private JPanel hotelListPanel, guestInfoPanel, showRoomPanel, cardPanel;
     private JTextField guestNameTF, checkInTF, checkOutTF, chooseHotelTF, enterDiscountTF, roomTypeTF;
     private JTextArea hotelListTA;
-    
+    private JRadioButton standardRoom, deluxeRoom, executiveRoom;
 
     private ImageIcon titleImageIcon, titleImageIcon_1, titleImageIcon_2, logoImageIcon;
 
@@ -135,11 +128,21 @@ public class SimulateBookingView {
         this.checkOutTF.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
         this.roomTypeLbl = new JLabel("Room Type: ");
-        this.roomTypeLbl.setPreferredSize(new Dimension(620, 10));
-        this.roomTypeTF = new JTextField();
-        this.roomTypeTF.setColumns(20);
         this.roomTypeLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-        this.roomTypeTF.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+        this.roomTypeLbl.setPreferredSize(new Dimension(620, 15));
+        this.standardRoom = new JRadioButton("Standard");
+        this.deluxeRoom = new JRadioButton("Deluxe");
+        this.executiveRoom = new JRadioButton("Executive");
+
+        ButtonGroup roomTypeSelect = new ButtonGroup();
+        roomTypeSelect.add(standardRoom);
+        roomTypeSelect.add(deluxeRoom);
+        roomTypeSelect.add(executiveRoom);
+
+        JPanel roomType = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        roomType.add(standardRoom);
+        roomType.add(deluxeRoom);
+        roomType.add(executiveRoom);
 
         this.discountLbl = new JLabel("Discount Code: ");
         this.discountLbl.setPreferredSize(new Dimension(620, 10));
@@ -171,7 +174,7 @@ public class SimulateBookingView {
         guestInfoPanel.add(enterCheckOutLbl);
         guestInfoPanel.add(checkOutTF);
         guestInfoPanel.add(roomTypeLbl);
-        guestInfoPanel.add(roomTypeTF);
+        guestInfoPanel.add(roomType);
         guestInfoPanel.add(discountLbl);
         guestInfoPanel.add(enterDiscountTF);
         guestInfoPanel.add(enterBtn);
@@ -355,5 +358,21 @@ public class SimulateBookingView {
         checkOutLbl.setText("Check-Out Date: " + checkOut);
         roomTypeLbl_2.setText("Room Type: " + roomType);
         discountLbl.setText("Discount Code: " + discountCode);
+    }
+
+    public boolean isStandardSelected(){
+        if(standardRoom.isSelected())
+            return true;
+        return false;
+    }
+    public boolean isDeluxeSelected(){
+        if(deluxeRoom.isSelected())
+            return true;
+        return false;
+    }
+    public boolean isExecSelected(){
+        if(executiveRoom.isSelected())
+            return true;
+        return false;
     }
 }

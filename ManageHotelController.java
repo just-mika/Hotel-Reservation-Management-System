@@ -24,11 +24,13 @@ public class ManageHotelController {
 
                 if (selectedHotel != null) {
                     mhView.setFeedbackLbl("Managing " + hotelName);
+                    updateButtons();
                     mhView.switchPanel("ManageHotelPanel");
                     mhView.clearTF();
                 } else {
                     mhView.setFeedbackLbl_2("Please Try Again! Hotel not found.");
                 }
+                mhView.clearTF();
             }
         });
 
@@ -81,11 +83,18 @@ public class ManageHotelController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int quantity = mhView.getAddRoomsText();
-                String roomType = mhView.getTypeRoomsText();
+                String roomType;
+                if(mhView.isAddStandardSelected())
+                    roomType = "Standard";
+                else if (mhView.isAddDeluxeSelected())
+                    roomType = "Deluxe";
+                else if (mhView.isAddExecSelected())
+                    roomType = "Executive";
+                else
+                    roomType = "null";
 
                 int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to add " + quantity + " rooms?", 
                                                              "Confirm Add Rooms", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-
                 if (response == JOptionPane.YES_OPTION) {
                     if(quantity != -1 && (roomType.equals("Standard") || roomType.equals("Deluxe") || roomType.equals("Executive"))) {
                         boolean add = rs.addRooms(selectedHotel, roomType, quantity);
@@ -93,8 +102,7 @@ public class ManageHotelController {
                         if (add) {
                             mhView.displayAddedRooms(selectedHotel, roomType, quantity);
                             mhView.clearTF_3();
-                            mhView.clearTF_4();
-                            mhView.setFeedbackLbl_4("Rooms added successfully to " + selectedHotel.getHotelName());
+                            mhView.setFeedbackLbl_4(roomType + "Rooms added successfully to " + selectedHotel.getHotelName());
                             mhView.switchPanel("AddRoomsPanel");
 
                         } else {
@@ -102,9 +110,56 @@ public class ManageHotelController {
                             mhView.switchPanel("AddRoomsPanel");
                         }
                     }
-                    else{
-                        mhView.setFeedbackLbl_4("Invalid inputs!");
+                    else if(quantity == -1){
+                        mhView.setFeedbackLbl_4("Invalid room numbers!");
                         mhView.switchPanel("AddRoomsPanel");
+                    }
+                    else{
+                        mhView.setFeedbackLbl_4("No room type selected!");
+                        mhView.switchPanel("AddRoomsPanel");
+                    }
+                } else {
+                    mhView.switchPanel("ManageHotelPanel");
+                }
+            }
+        });
+
+        this.mhView.removeRoomInfoAL(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int quantity = mhView.getRemoveRoomsText();
+                String roomType;
+                if(mhView.isRemoveStandardSelected())
+                    roomType = "Standard";
+                else if (mhView.isRemoveDeluxeSelected())
+                    roomType = "Deluxe";
+                else if (mhView.isRemoveExecSelected())
+                    roomType = "Executive";
+                else
+                    roomType = "null";
+
+                int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove " + quantity + " rooms?",
+                        "Confirm Remove Rooms", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+                    if(quantity != -1 && (roomType.equals("Standard") || roomType.equals("Deluxe") || roomType.equals("Executive"))) {
+                        boolean remove = rs.removeRooms(selectedHotel, roomType, quantity);
+                        if (remove) {
+                            mhView.displayMaxRooms(selectedHotel);
+                            mhView.clearTF_5();
+                            mhView.setFeedbackLbl_5(roomType + "Rooms removed successfully to " + selectedHotel.getHotelName());
+                            mhView.switchPanel("RemoveRoomsPanel");
+                        } else {
+                            mhView.setFeedbackLbl_5("Failed to add rooms. Please try again.");
+                            mhView.switchPanel("RemoveRoomsPanel");
+                        }
+                    }
+                    else if(quantity == -1){
+                        mhView.setFeedbackLbl_5("Invalid room numbers!");
+                        mhView.switchPanel("RemoveRoomsPanel");
+                    }
+                    else{
+                        mhView.setFeedbackLbl_5("No room type selected!");
+                        mhView.switchPanel("RemoveRoomsPanel");
                     }
                 } else {
                     mhView.switchPanel("ManageHotelPanel");
@@ -125,34 +180,6 @@ public class ManageHotelController {
             public void actionPerformed(ActionEvent e) {
                 mhView.displayMaxRooms(selectedHotel);
                 mhView.switchPanel("RemoveRoomsPanel");
-            }
-        });
-
-        this.mhView.removeRoomInfoAL(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int quantity = mhView.getRemoveRoomsText();
-                String roomType = mhView.getTypeRoomsText_2();
-
-                int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove " + quantity + " rooms?", 
-                                                             "Confirm Remove Rooms", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-
-                if (response == JOptionPane.YES_OPTION) {
-                    boolean remove = rs.removeRooms(selectedHotel, roomType, quantity);
-                    System.out.println(remove);
-                    if (remove) {
-                        mhView.displayRemovedRooms(selectedHotel, roomType, quantity);
-                        mhView.clearTF_5();
-                        mhView.clearTF_6();
-                        mhView.setFeedbackLbl_5("Rooms removed successfully from " + selectedHotel.getHotelName());
-                        //mhView.switchPanel("RemoveRoomsPanel");
-                    } else {
-                        mhView.setFeedbackLbl_5("Failed to remove rooms. Please try again.");
-                      //  mhView.switchPanel("RemoveRoomsPanel");
-                    }
-                } else {
-                    mhView.switchPanel("ManageHotelPanel");
-                }
             }
         });
 
@@ -205,30 +232,52 @@ public class ManageHotelController {
                 mhView.switchPanel("ManageHotelPanel");
             }
         });
+        this.mhView.removeReserveBackAL(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mhView.setFeedbackLbl_7("");
+                mhView.clearTF_8();
+                mhView.switchPanel("ManageHotelPanel");
+            }
+        });
 
         this.mhView.goToRemoveReserveAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mhView.switchPanel("RemoveReservationPanel");
                 String reservation = mhView.getRemoveReserveText();
+                if (reservation.isEmpty()) {
+                    mhView.setFeedbackLbl_7("Please enter a reservation name!");
+                    mhView.switchPanel("ReserveListPanel");
+                } else if(selectedHotel.getReservationManager().findReservation(reservation) == null) {
+                    mhView.setFeedbackLbl_7("Reservation not found!");
+                    mhView.switchPanel("ReserveListPanel");
+                }
+                else{
+                    mhView.switchPanel("RemoveReservationPanel");
+                    mhView.displayRemoveReserve(selectedHotel, selectedHotel.getReservationManager().findReservation(reservation).getGuestName());
+                    int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove the reservation for " + reservation + "?",
+                            "Confirm Remove Reservation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
-                int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove the reservation for " + reservation + "?",
-                                                             "Confirm Remove Reservation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (response == JOptionPane.YES_OPTION) {
+                        boolean remove = rs.removeReservation(selectedHotel, reservation);
 
-                if (response == JOptionPane.YES_OPTION) {
-                    boolean remove = rs.removeReservation(selectedHotel, reservation);
-
-                    if (remove) {
-                        mhView.displayRemoveReserve(selectedHotel, reservation);
-                        mhView.clearTF_8();
-                        mhView.setFeedbackLbl_7("Reservation removed in " + selectedHotel.getHotelName() + " for " + reservation);
-                        mhView.switchPanel("ManageHotelPanel");
+                        if (remove) {
+                            mhView.clearTF_8();
+                            //mhView.setFeedbackLbl_7("Reservation removed in " + selectedHotel.getHotelName() + " for " + reservation);
+                            mhView.switchPanel("ManageHotelPanel");
+                            updateButtons();
+                            JOptionPane.showMessageDialog(null, reservation + "'s Reservation successfully removed.",
+                                    "Delete Reservation Successful", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            mhView.clearTF_8();
+                            mhView.switchPanel("ManageHotelPanel");
+                            JOptionPane.showMessageDialog(null, "Reservation deletion failed.",
+                                    "Delete Reservation Failed", JOptionPane.INFORMATION_MESSAGE);
+                        }
                     } else {
-                        mhView.setFeedbackLbl_7("Failed to remove reservation. Please try again.");
-                        mhView.switchPanel("RemoveReservationPanel");
+                        mhView.clearTF_8();
+                        mhView.switchPanel("ManageHotelPanel");
                     }
-                } else {
-                    mhView.switchPanel("ManageHotelPanel");
                 }
             }
         });
@@ -236,6 +285,7 @@ public class ManageHotelController {
         this.mhView.removeReserveAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                displayReservationList();
                 mhView.setFeedbackLbl_7("");
                 mhView.switchPanel("ReserveListPanel");
             }
@@ -250,7 +300,6 @@ public class ManageHotelController {
 
                 if (response == JOptionPane.YES_OPTION) {
                     boolean remove = rs.removeHotel(hotelName);
-
                     if (remove) {
                         mhView.close(false);
                         mController.showMainMenuView(true);
@@ -264,44 +313,15 @@ public class ManageHotelController {
                 } else {
                     mhView.switchPanel("ManageHotelPanel");
                 }
-
-                /*
-                mhView.switchPanel("RemoveHotelPanel");
-                mhView.setFeedbackLbl_8("");*/
             }
         });
-/*
-        this.mhView.goToManageAL_7(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String hotelName = mhView.getRemoveHotelText();
-                int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove hotel " + hotelName + "?",
-                                                             "Confirm Remove Hotel", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-
-                if (response == JOptionPane.YES_OPTION) {
-                    Hotel selectedHotel = rs.selectHotel(hotelName);
-                    boolean remove = rs.removeHotel(hotelName);
-
-                    if (remove) {
-                        mhView.displayRemoveHotel(selectedHotel, hotelName);
-                        mhView.clearTF_9();
-                        mhView.setFeedbackLbl_8("Removed " + hotelName);
-                        mhView.switchPanel("HighLvlInfoPanel");
-                    } else {
-                        mhView.setFeedbackLbl_8("Failed to remove hotel. Please try again.");
-                        mhView.switchPanel("RemoveHotelPanel");
-                    }
-                } else {
-                    mhView.switchPanel("ManageHotelPanel");
-                }
-            }
-        });*/
 
         this.mhView.backToMainAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mhView.close(false);
                 mController.showMainMenuView(true);
+                mhView.setFeedbackLbl_2("");
                 mhView.switchPanel("HotelListPanel");
             }
         });
@@ -310,6 +330,7 @@ public class ManageHotelController {
             public void actionPerformed(ActionEvent e) {
                 mhView.close(false);
                 mController.showMainMenuView(true);
+                mhView.setFeedbackLbl_2("");
                 mhView.clearTF();
                 mhView.setFeedbackLbl("");
             }
@@ -327,5 +348,22 @@ public class ManageHotelController {
         }
 
         mhView.setHotelListTA(displayTxt.toString());
+    }
+
+    private void updateButtons(){
+        boolean showButtons = false;
+        if(selectedHotel.getReservationManager().getReserveList().size() > 0)
+            showButtons = true;
+        this.mhView.setRemoveHotelEnabled(!showButtons);
+        this.mhView.setRemoveReserveEnabled(showButtons);
+    }
+
+
+    public void displayReservationList(){
+        StringBuilder displayTxt = new StringBuilder();
+        for(Reservation reservation : selectedHotel.getReservationManager().getReserveList()){
+            displayTxt.append(reservation.getGuestName()).append("\n");
+        }
+        mhView.setReserveListTA(displayTxt.toString());
     }
 }

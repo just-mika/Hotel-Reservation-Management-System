@@ -27,7 +27,6 @@ public class ViewHotelController {
                         vView.setViewReserveEnabled(true);
                     else
                         vView.setViewReserveEnabled(false);
-                    //vView.clearTF();
                 } else {
                     vView.setHotelFeedbackLbl("Please Try Again! Hotel not found.");
                 }
@@ -82,10 +81,19 @@ public class ViewHotelController {
             }
         });
 
+        this.vView.backToLowAL_4(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vView.switchPanel("LowLvlPanel");
+                vView.setFeedbackLbl_2("");
+            }
+        });
+
         // View Room Screen
         this.vView.goToChooseRoomAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                displayRoomList();
                 vView.switchPanel("RoomListPanel");
                 vView.clearTF_3();
             }
@@ -95,7 +103,6 @@ public class ViewHotelController {
         this.vView.goToViewRoomAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 if (selectedHotel != null) {
                         int roomNumber = vView.getInputRoomNameText();
                         if(roomNumber < 101 || roomNumber > 350)
@@ -109,7 +116,6 @@ public class ViewHotelController {
                         } else {
                             vView.setFeedbackLbl_3("Room not found.");
                         }
-
                     }
                 } else {
                     vView.setFeedbackLbl_3("Please select a hotel first.");
@@ -125,37 +131,62 @@ public class ViewHotelController {
             }
         });
 
+        this.vView.backToLowAL_5(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vView.switchPanel("LowLvlPanel");
+                vView.setFeedbackLbl_3("");
+            }
+        });
+
         // View Reservation Screen
         this.vView.goToChooseReserveAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String guestName = vView.getInputReserveText();
-        
-                if (selectedHotel != null) {
-                    Reservation reservation = selectedHotel.getReservationManager().findReservation(guestName);
-        
-                    if (reservation != null) {
-                        vView.displayReservations(reservation, selectedHotel); // Update view to display reservation
-                    } else {
-                        vView.setFeedbackLbl_3("No reservation found for this guest.");
-                    }
-        
-                } else {
-                    vView.setFeedbackLbl_4("Please select a hotel first.");
-                }
-                vView.switchPanel("ReservationListPanel");
+                displayReservationList();
+                vView.setFeedbackLbl_4("");
                 vView.clearTF_4();
+                vView.switchPanel("ReservationListPanel");
             }
         });
 
         this.vView.goToViewReserveAL(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vView.switchPanel("ViewReservePanel");
+                String guestName = vView.getInputReserveText();
+                if(guestName.isEmpty()) {
+                    vView.setFeedbackLbl_4("Please enter guest name!");
+                    vView.switchPanel("ReservationListPanel");
+                }
+                else {
+                    if (selectedHotel != null) {
+                        Reservation reservation = selectedHotel.getReservationManager().findReservation(guestName);
+
+                        if (reservation != null) {
+                            // Update view to display reservation
+                            vView.displayReservations(reservation, selectedHotel);
+                            vView.switchPanel("ViewReservePanel");
+                        } else {
+                            vView.setFeedbackLbl_4("No reservation found for this guest.");
+                            vView.switchPanel("ReservationListPanel");
+                        }
+
+                    } else {
+                        vView.setFeedbackLbl_4("Please select a hotel first.");
+                        vView.switchPanel("ReservationListPanel");
+                    }
+                }
             }
         });
 
         this.vView.backToLowAL_3(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vView.switchPanel("LowLvlPanel");
+            }
+        });
+
+        this.vView.backToLowAL_6(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vView.switchPanel("LowLvlPanel");
@@ -181,6 +212,8 @@ public class ViewHotelController {
             public void actionPerformed(ActionEvent e) {
                 vView.close(false);
                 mController.showMainMenuView(true);
+                vView.clearTF();
+                vView.setHotelFeedbackLbl("");
                 vView.switchPanel("HotelListPanel");
             }
         });
@@ -190,7 +223,8 @@ public class ViewHotelController {
                 vView.close(false);
                 mController.showMainMenuView(true);
                 vView.clearTF();
-                vView.setHotelFeedbackLbl("");;
+                vView.setHotelFeedbackLbl("");
+                vView.switchPanel("HotelListPanel");
             }
         });
     }
@@ -207,6 +241,18 @@ public class ViewHotelController {
 
         vView.setHotelListTA(displayTxt.toString());
     }
-    
-    
+    public void displayReservationList(){
+        StringBuilder displayTxt = new StringBuilder();
+        for(Reservation reservation : selectedHotel.getReservationManager().getReserveList()){
+            displayTxt.append(reservation.getGuestName()).append("\n");
+        }
+        vView.setReserveListTA(displayTxt.toString());
+    }
+    public void displayRoomList(){
+        StringBuilder displayTxt = new StringBuilder();
+        for(Room room : selectedHotel.getRoomManager().getRoomList()){
+            displayTxt.append(room.getRoomName()).append("\n");
+        }
+        vView.setRoomListTA(displayTxt.toString());
+    }
 }

@@ -43,8 +43,15 @@ public class SimulateBookingController {
 
         try {
             guestName = sbView.getGuestNameText();
-            roomType = sbView.getRoomTypeText();
             discountCode = sbView.getDiscountText();
+            if(sbView.isStandardSelected())
+                roomType = "Standard";
+            else if (sbView.isDeluxeSelected())
+                roomType = "Deluxe";
+            else if (sbView.isExecSelected())
+                roomType = "Executive";
+            else
+                roomType = "null";
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error retrieving input data. Please try again.");
             return;
@@ -71,8 +78,8 @@ public class SimulateBookingController {
         }
 
         // Validate room type
-        if (roomType.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter a room type!");
+        if (roomType.equals("null")) {
+            JOptionPane.showMessageDialog(null, "Please choose a room type!");
             return;
         }
 
@@ -110,7 +117,6 @@ public class SimulateBookingController {
             sbView.clearTF_2();
             sbView.clearTF_3();
             sbView.clearTF_4();
-            sbView.clearTF_5();
             sbView.clearTF_6();
         } else {
             JOptionPane.showMessageDialog(null, "Please try again! Invalid information or room unavailable.");

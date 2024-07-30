@@ -15,8 +15,8 @@ public class ViewHotelView {
     private JPanel highLvlPanel, lowLvlPanel, hotelListPanel, mainPanel, cardPanel, chkAvailPanel, viewRoomPanel, viewReservePanel, inputDatePanel, roomListPanel, reservationListPanel; 
     private JButton backToViewBtn_1, viewBtn, checkBtn, chooseRoomBtn, chooseReserveBtn;
     private JTextField chooseHotelTF, inputDateTF, inputRoomNameTF, inputReserveTF; 
-    private JButton chkAvailBtn, viewRoomBtn, viewReserveBtn, backToViewBtn_2, backToLowBtn_1, backToLowBtn_2, backToLowBtn_3;
-    private JTextArea hotelListTA;
+    private JButton chkAvailBtn, viewRoomBtn, viewReserveBtn, backToViewBtn_2, backToLowBtn_1, backToLowBtn_2, backToLowBtn_3, backToLowBtn_4, backToLowBtn_5, backToLowBtn_6;
+    private JTextArea hotelListTA, reserveListTA, availRoomsTA, roomListTA;
     private JLabel hotelFeedbackLbl, dateFeedBackLbl;
 
     private ImageIcon titleImageIcon, titleImageIcon_1, titleImageIcon_2, titleImageIcon_3, titleImageIcon_4, titleImageIcon_5 , logoImageIcon, titleImageIcon_6;
@@ -80,8 +80,6 @@ public class ViewHotelView {
 
         logoImageIcon = new ImageIcon(getClass().getResource("HRS Logo.png"));
         mainFrame.setIconImage(logoImageIcon.getImage());
-
-        
 
         this.highInfoBtn = new JButton("View High-Level Information");
         this.highInfoBtn.setPreferredSize(new Dimension(620, 30));
@@ -214,9 +212,9 @@ public class ViewHotelView {
         this.feedbackLbl_2.setPreferredSize(new Dimension(600, 30));
         this.feedbackLbl_2.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.backToLowBtn_1 = new JButton("Back to View Hotel");
-        this.backToLowBtn_1.setPreferredSize(new Dimension(620, 30));
-        this.backToLowBtn_1.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+        this.backToLowBtn_4 = new JButton("Back");
+        this.backToLowBtn_4.setPreferredSize(new Dimension(620, 30));
+        this.backToLowBtn_4.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
         inputDatePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         inputDatePanel.setPreferredSize(new Dimension(620, 1080));
@@ -224,24 +222,38 @@ public class ViewHotelView {
         inputDatePanel.add(inputDateLbl);
         inputDatePanel.add(inputDateTF);
         inputDatePanel.add(checkBtn);
-        inputDatePanel.add(backToLowBtn_1);
+        inputDatePanel.add(backToLowBtn_4);
         inputDatePanel.add(feedbackLbl_2);
-        
 
         //show Avail Rooms Panel
+        this.backToLowBtn_1 = new JButton("Back");
+        this.backToLowBtn_1.setPreferredSize(new Dimension(620, 30));
+        this.backToLowBtn_1.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
         this.showAvailRoomLbl = new JLabel("Available Rooms: ");
-        this.showAvailRoomLbl.setPreferredSize(new Dimension(600, 30));
+        this.showAvailRoomLbl.setPreferredSize(new Dimension(330, 30));
         this.showAvailRoomLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
         this.totalBookedLbl = new JLabel("Total Booked Rooms: ");
-        this.totalBookedLbl.setPreferredSize(new Dimension(600, 30));
+        this.totalBookedLbl.setPreferredSize(new Dimension(330, 30));
         this.totalBookedLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        this.availRoomsTA = new JTextArea("");
+        this.availRoomsTA.setPreferredSize(new Dimension(330, 100));
+        this.availRoomsTA.setEditable(false);
+        JScrollPane availScroll = new JScrollPane(availRoomsTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        availScroll.setPreferredSize(new Dimension(330, 100));
+
+        JPanel listPanel3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        listPanel3.add(availScroll);
+        listPanel3.setPreferredSize(new Dimension(620, 100));
 
         chkAvailPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         chkAvailPanel.setPreferredSize(new Dimension(620, 1080));
         chkAvailPanel.add(titleLbl_4);
-        chkAvailPanel.add(showAvailRoomLbl);
         chkAvailPanel.add(totalBookedLbl);
+        chkAvailPanel.add(showAvailRoomLbl);
+        chkAvailPanel.add(listPanel3);
         chkAvailPanel.add(backToLowBtn_1);
 
         //roomList Panel
@@ -254,22 +266,44 @@ public class ViewHotelView {
         this.inputRoomNameTF.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
         this.chooseRoomBtn = new JButton("Choose Room");
-        this.chooseRoomBtn.setPreferredSize(new Dimension(620, 30));
+        this.chooseRoomBtn.setPreferredSize(new Dimension(200, 30));
         this.chooseRoomBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
         this.feedbackLbl_3 = new JLabel("");
         this.feedbackLbl_3.setPreferredSize(new Dimension(600, 30));
         this.feedbackLbl_3.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        this.backToLowBtn_5 = new JButton("Back");
+        this.backToLowBtn_5.setPreferredSize(new Dimension(100, 30));
+        this.backToLowBtn_5.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        JLabel chooseRoomLbl = new JLabel("Rooms:", JLabel.CENTER);
+        chooseRoomLbl.setPreferredSize(new Dimension(330, 30));
+        chooseRoomLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        JPanel chooseRoomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        chooseRoomPanel.add(inputRoomNameTF);
+        chooseRoomPanel.add(chooseRoomBtn);
+        chooseRoomPanel.add(backToLowBtn_5);
+
+        this.roomListTA = new JTextArea("");
+        this.roomListTA.setPreferredSize(new Dimension(330, 100));
+        this.roomListTA.setEditable(false);
+        JScrollPane roomScroll = new JScrollPane(roomListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        roomScroll.setPreferredSize(new Dimension(330, 100));
+
+        JPanel roomList = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        roomList.add(chooseRoomLbl);
+        roomList.add(roomScroll);
+        roomList.setPreferredSize(new Dimension(620, 300));
         
         roomListPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         roomListPanel.setPreferredSize(new Dimension(620, 1080));
         roomListPanel.add(titleLbl_7);
-        roomListPanel.add(inputRoomNameLbl);
-        roomListPanel.add(inputRoomNameTF);
-        roomListPanel.add(chooseRoomBtn);
         roomListPanel.add(feedbackLbl_3);
-
-        
+        roomListPanel.add(inputRoomNameLbl);
+        roomListPanel.add(chooseRoomPanel);
+        roomListPanel.add(roomList);
 
         //view Room Panel
         this.roomNameLbl = new JLabel("Room Name: ");
@@ -288,7 +322,7 @@ public class ViewHotelView {
         this.reservedDatesLbl.setPreferredSize(new Dimension(600, 30));
         this.reservedDatesLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.backToLowBtn_2 = new JButton("Back to View Hotel");
+        this.backToLowBtn_2 = new JButton("Back");
         this.backToLowBtn_2.setPreferredSize(new Dimension(620, 30));
         this.backToLowBtn_2.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
@@ -311,15 +345,45 @@ public class ViewHotelView {
         this.inputReserveTF.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
         this.chooseReserveBtn = new JButton("Choose Reservation");
-        this.chooseReserveBtn.setPreferredSize(new Dimension(620, 30));
+        this.chooseReserveBtn.setPreferredSize(new Dimension(200, 30));
         this.chooseReserveBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        this.backToLowBtn_6 = new JButton("Back");
+        this.backToLowBtn_6.setPreferredSize(new Dimension(100, 30));
+        this.backToLowBtn_6.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        this.feedbackLbl_4 = new JLabel("");
+        this.feedbackLbl_4.setPreferredSize(new Dimension(600, 30));
+        this.feedbackLbl_4.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        this.reserveListTA = new JTextArea("");
+        this.reserveListTA.setPreferredSize(new Dimension(330, 100));
+        this.reserveListTA.setEditable(false);
+        JScrollPane scroll2 = new JScrollPane(reserveListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll2.setPreferredSize(new Dimension(330, 100));
+
+        JLabel chooseLbl2 = new JLabel("Reservations: ", JLabel.CENTER);
+        chooseLbl2.setPreferredSize(new Dimension(620, 30));
+        chooseLbl2.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+        JPanel chooseReserve = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        chooseReserve.add(inputReserveTF);
+        chooseReserve.add(chooseReserveBtn);
+        chooseReserve.add(backToLowBtn_6);
+        chooseReserve.setPreferredSize(new Dimension(620, 50));
+
+        JPanel listPanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        listPanel2.add(chooseLbl2);
+        listPanel2.add(scroll2);
+        listPanel2.setPreferredSize(new Dimension(620, 200));
         
         reservationListPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         reservationListPanel.setPreferredSize(new Dimension(620, 1080));
         reservationListPanel.add(titleLbl_8);
         reservationListPanel.add(inputReservaLbl);
-        reservationListPanel.add(inputReserveTF);
-        reservationListPanel.add(chooseReserveBtn);
+        reservationListPanel.add(feedbackLbl_4);
+        reservationListPanel.add(chooseReserve);
+        reservationListPanel.add(listPanel2);
 
         //view Reservation Panel
         this.guestNameLbl = new JLabel("Guest Name: ");
@@ -350,10 +414,6 @@ public class ViewHotelView {
         this.backToLowBtn_3.setPreferredSize(new Dimension(620, 30));
         this.backToLowBtn_3.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.feedbackLbl_4 = new JLabel("");
-        this.feedbackLbl_4.setPreferredSize(new Dimension(600, 30));
-        this.feedbackLbl_4.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
         viewReservePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         viewReservePanel.setPreferredSize(new Dimension(620, 1080));
         viewReservePanel.add(titleLbl_6);
@@ -364,7 +424,6 @@ public class ViewHotelView {
         viewReservePanel.add(pricePerNytLbl);
         viewReservePanel.add(totalPriceLbl);
         viewReservePanel.add(backToLowBtn_3);
-        viewReservePanel.add(feedbackLbl_4);
         
 
 
@@ -437,6 +496,9 @@ public class ViewHotelView {
     public void backToLowAL_1(ActionListener al){
         this.backToLowBtn_1.addActionListener(al);
     }
+    public void backToLowAL_4(ActionListener al){
+        this.backToLowBtn_4.addActionListener(al);
+    }
 
     //view Room Panel
     public void goToChooseRoomAL(ActionListener al){
@@ -450,6 +512,9 @@ public class ViewHotelView {
     public void backToLowAL_2(ActionListener al){
         this.backToLowBtn_2.addActionListener(al);
     }
+    public void backToLowAL_5(ActionListener al){
+        this.backToLowBtn_5.addActionListener(al);
+    }
 
     //view Reservation Panel
     public void goToChooseReserveAL(ActionListener al){
@@ -462,6 +527,9 @@ public class ViewHotelView {
 
     public void backToLowAL_3(ActionListener al){
         this.backToLowBtn_3.addActionListener(al);
+    }
+    public void backToLowAL_6(ActionListener al){
+        this.backToLowBtn_6.addActionListener(al);
     }
 
     //show/close
@@ -505,7 +573,7 @@ public class ViewHotelView {
     }
 
     public void clearTF_4(){
-        this.inputRoomNameTF.setText("");
+        this.inputReserveTF.setText("");
     }
 
     public String getChooseHotelText() {
@@ -546,9 +614,9 @@ public class ViewHotelView {
     public void displayAvailableRooms(List<Room> rooms, int totalBookedRooms) {
         StringBuilder sb = new StringBuilder();
         for (Room room : rooms) {
-            sb.append("- ").append(room.getRoomName());
+            sb.append(room.getRoomName()).append("\n");
         }
-        showAvailRoomLbl.setText("Available Rooms: " + sb.toString().replace("\n", "<br>"));
+        availRoomsTA.setText(sb.toString());
         totalBookedLbl.setText("Total Booked Rooms: " + totalBookedRooms);
     }
 
@@ -558,14 +626,15 @@ public class ViewHotelView {
             int[] reservedDates = room.getReservedDates();
   
             if (room.computeReservedDates() > 0) {
-                for (int date : reservedDates) {
-                    if (date != 0) {
-                        sb.append(date).append(", ");
+                for (int i = 0; i < 31; i++) {
+                    if (reservedDates[i] != 0) {
+                        sb.append(i+1).append(", ");
                     }
                 }
             } else {
                 sb.append("None");
             }
+            System.out.println("Room Name: " + room.getRoomName());
             roomNameLbl.setText("Room Name: " + room.getRoomName());
             roomTypeLbl.setText("Room Type: " + room.getRoomType());
             roomPriceLbl.setText("Room Price: " + room.getRoomPrice());
@@ -590,9 +659,11 @@ public class ViewHotelView {
         CardLayout cardLayout = (CardLayout) cardPanel.getLayout();
         cardLayout.show(cardPanel, panelName);
     }
+
     public void setHotelListTA(String text) {
         this.hotelListTA.setText(text);
     }
-
+    public void setReserveListTA(String text){this.reserveListTA.setText(text);}
     public void setViewReserveEnabled(boolean enabled){this.viewReserveBtn.setEnabled(enabled);}
+    public void setRoomListTA(String text){this.roomListTA.setText(text);}
 }
