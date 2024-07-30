@@ -8,7 +8,6 @@ public class MainMenuController {
     private ViewHotelController vController;
     private ManageHotelController mhController;
     private SimulateBookingController sbController;
-    private DatePriceController dpController;
     private ExitView eView;
     private ReservationSystem rs;
 
@@ -18,7 +17,6 @@ public class MainMenuController {
         this.vController = new ViewHotelController(this, rs);
         this.mhController = new ManageHotelController(this, rs);
         this.sbController = new SimulateBookingController(this, rs);
-        this.dpController = new DatePriceController(this, rs);
         this.eView = new ExitView();
         this.rs = rs;
 
@@ -60,14 +58,6 @@ public class MainMenuController {
             }
         });
 
-        this.mView.modifyPriceAL(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dpController.displayHotels();
-                mView.close(false);
-                dpController.showDatePriceView(true);
-            }
-        });
 
         this.mView.exitProgramAL(new ActionListener() {
             @Override
@@ -91,7 +81,6 @@ public class MainMenuController {
         this.mView.setViewHotelEnabled(showButtons);
         this.mView.setManageHotelEnabled(showButtons);
         this.mView.setBookRoomEnabled(showButtons);
-        this.mView.setModifyPrice(showButtons);
     }
 
 

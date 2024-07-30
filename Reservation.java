@@ -3,18 +3,33 @@
  */
 
 public class Reservation {
-    protected String guestName; //attribute representing guest's name
-    protected Room room; //attribute representing the reserved room
-    protected int checkInDate; //attribute representing the check-in date
-    protected int checkOutDate; //attribute representing the check-out date
+    /**
+     * Attribute representing guest's name
+     */
+    protected String guestName;
+    /**
+     * Attribute representing the reserved room
+     */
+    protected Room room;
+    /**
+     * Attribute representing the check-in date
+     */
+    protected int checkInDate;
+    /**
+     * Attribute representing the check-out date
+     */
+    protected int checkOutDate;
 
     /**
      * Constructs a new reservation.
      *
      * @param guestName    the name of the guest making the reservation
      * @param room         the room being reserved
-     * @param checkInDate  the check-in date (simplified to a single int value representing to the day)
-     * @param checkOutDate the check-out date (simplified to a single int value representing to the day)
+     * @param checkInDate  the check-in date (simplified to a single int value representing the day)
+     * @param checkOutDate the check-out date (simplified to a single int value representing the day)
+     * @throws IllegalArgumentException if check-in date is equal to check-out date, check-in date is greater than check-out date,
+     *                                  check-in date is not within the range of 1 to 30, or check-out date is not within the range of 1 to 31
+     * @throws NullPointerException     if the room or guest name is null
      */
     public Reservation(String guestName, Room room, int checkInDate, int checkOutDate){
         if(checkInDate == checkOutDate)
@@ -79,9 +94,11 @@ public class Reservation {
     /**
      * Gets the reservation's price on a given date.
      *
-     * @param date  the given date.
-     * @param hotel the hotel the reservation belongs to.
-     * @return the price of the reservation on the given date.
+     * @param date  the given date
+     * @param hotel the hotel the reservation belongs to
+     * @return the price of the reservation on the given date
+     * @throws IllegalArgumentException if the date is not within the range of 1 to 31
+     * @throws NullPointerException     if the hotel is null
      */
     public double getDatePrice(int date, Hotel hotel){
         if(date < 1 || date > 31)
@@ -94,8 +111,9 @@ public class Reservation {
     /**
      * Computes the current total price of the reservation. The price may change due to the date price modifier function.
      *
-     * @param hotel the hotel the reservation belongs to.
-     * @return the total computed price of the reservation.
+     * @param hotel the hotel the reservation belongs to
+     * @return the total computed price of the reservation
+     * @throws NullPointerException if the hotel is null
      */
     public double computeTotalPrice(Hotel hotel){
         if(hotel == null)

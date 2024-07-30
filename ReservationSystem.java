@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 /**
- * Represents the reservation system that manages and modifies different hotels.
+ * Represents a reservation system that manages a collection of hotels.
+ * It provides methods to add or remove hotels, manage reservations, and update hotel details.
  */
-
 public class ReservationSystem {
     private ArrayList<Hotel> hotelList; //attribute for the list of hotels
 
@@ -14,18 +14,18 @@ public class ReservationSystem {
     }
 
     /**
-     * Gets the list of hotels.
+     * Gets the list of hotels managed by the reservation system.
      *
-     * @return the list of hotels.
+     * @return The list of hotels.
      */
     public ArrayList<Hotel> getHotelList(){
         return hotelList;
     }
 
     /**
-     * Gets the number of hotels in the list.
+     * Gets the number of hotels in the reservation system.
      *
-     * @return the number of hotels.
+     * @return The number of hotels.
      */
     public int countHotels(){
         return hotelList.size();
@@ -35,8 +35,8 @@ public class ReservationSystem {
     /**
      * Selects a hotel by name.
      *
-     * @param hotelName the name of the hotel to select.
-     * @return the selected hotel, or null if no hotel with the specified name is found.
+     * @param hotelName The name of the hotel to select.
+     * @return The selected hotel, or null if no hotel with the specified name is found.
      */
     public Hotel selectHotel(String hotelName) {
         for (Hotel hotel : hotelList) { //check all hotels if they have the same name as the given
@@ -50,8 +50,8 @@ public class ReservationSystem {
     /**
      * Creates a new hotel with the specified name and adds it to the list if it doesn't already exist.
      *
-     * @param hotelName the name of the hotel to create.
-     * @return true if the hotel was created and added, false if a hotel with the same name already exists.
+     * @param hotelName The name of the hotel to create.
+     * @return {@code true} if the hotel was created and added; {@code false} if a hotel with the same name already exists.
      */
     public boolean createHotel(String hotelName) {
         if (this.selectHotel(hotelName) == null)
@@ -63,9 +63,9 @@ public class ReservationSystem {
     /**
      * Changes the name of the selected hotel.
      *
-     * @param hotel        the selected hotel
-     * @param newHotelName the new name of the hotel
-     * @return true if the hotel name change is successful; false otherwise.
+     * @param hotel        The selected hotel.
+     * @param newHotelName The new name of the hotel.
+     * @return {@code true} if the hotel name change was successful; {@code false} otherwise.
      */
     public boolean changeHotelName(Hotel hotel, String newHotelName){
         if(this.selectHotel(newHotelName) == null && hotel != null){
@@ -76,12 +76,12 @@ public class ReservationSystem {
     }
 
     /**
-     * Adds rooms to the selected hotel.
+     * Adds a specified number of rooms to the selected hotel.
      *
-     * @param hotel     the selected hotel
-     * @param roomType  the type of room to add
-     * @param quantity  the number of rooms to add
-     * @return 'true' if the adding is successful; 'false' otherwise.
+     * @param hotel     The selected hotel.
+     * @param roomType  The type of room to add.
+     * @param quantity  The number of rooms to add.
+     * @return {@code true} if rooms were successfully added; {@code false} otherwise.
      */
     public boolean addRooms(Hotel hotel, String roomType, int quantity){
         if(hotel != null) {
@@ -98,10 +98,10 @@ public class ReservationSystem {
     /**
      * Removes a specified number of rooms from the selected hotel.
      *
-     * @param hotel    the selected hotel
-     * @param roomType the type of rooms to remove
-     * @param quantity the number of rooms to remove
-     * @return 'true' if rooms are successfully removed; 'false' otherwise.
+     * @param hotel    The selected hotel.
+     * @param roomType The type of rooms to remove.
+     * @param quantity The number of rooms to remove.
+     * @return {@code true} if rooms were successfully removed; {@code false} otherwise.
      */
     public boolean removeRooms(Hotel hotel, String roomType, int quantity){
         if(hotel != null){ //only remove if the number of rooms to remove is less than the current amt of rooms
@@ -117,11 +117,11 @@ public class ReservationSystem {
     }
 
     /**
-     * Changes the price of rooms in the selected hotel.
+     * Updates the base price of rooms in the selected hotel.
      *
-     * @param hotel    the selected hotel
-     * @param newPrice the new price to set the current base price to.
-     * @return 'true' if the base price is successfully set; 'false' otherwise.
+     * @param hotel    The selected hotel.
+     * @param newPrice The new base price to set.
+     * @return {@code true} if the base price was successfully updated; {@code false} otherwise.
      */
     public boolean updateBasePrice(Hotel hotel, double newPrice){
         if(hotel != null) { //only change base price if it is greater than or equal to 100 and if current hotel has no reservations
@@ -138,12 +138,12 @@ public class ReservationSystem {
     }
 
     /**
-     * Modifies the price rate at a given rate in a hotel.
+     * Modifies the price rate for a specific date in the selected hotel.
      *
-     * @param hotel    the selected hotel
-     * @param date     the date to modify
-     * @param rate     the new price rate of the date
-     * @return 'true' if the price rate is successfully set; 'false' otherwise.
+     * @param hotel    The selected hotel.
+     * @param date     The date to modify.
+     * @param rate     The new price rate for the date.
+     * @return {@code true} if the price rate was successfully modified; {@code false} otherwise.
      */
     public boolean modifyDatePrice(Hotel hotel, int date, double rate){
         if(hotel != null && hotel.getDatePriceManager().findDate(date) != null && rate >= 0){
@@ -156,14 +156,14 @@ public class ReservationSystem {
 
 
     /**
-     * Adds a reservation to the hotel for a specified guest and date range.
+     * Reserves a room in the selected hotel for a specified guest and date range.
      *
-     * @param hotel        The selected hotel
+     * @param hotel        The selected hotel.
      * @param guestName    The name of the guest.
      * @param checkInDate  The check-in date.
      * @param checkOutDate The check-out date.
-     * @param roomType     The type of room to reserve
-     * @return `true` if the reservation was successfully added; `false` otherwise.
+     * @param roomType     The type of room to reserve.
+     * @return {@code true} if the reservation was successfully added; {@code false} otherwise.
      */
     public boolean reserveRoom(Hotel hotel, String guestName, int checkInDate, int checkOutDate, String roomType){
         int dateCount = checkOutDate - checkInDate + 1;
@@ -176,15 +176,15 @@ public class ReservationSystem {
     }
 
     /**
-     * Adds a reservation to the hotel for a specified guest and date range with a given discount code.
+     * Reserves a room in the selected hotel for a specified guest and date range with a discount code.
      *
-     * @param hotel        The selected hotel
+     * @param hotel        The selected hotel.
      * @param guestName    The name of the guest.
      * @param checkInDate  The check-in date.
      * @param checkOutDate The check-out date.
-     * @param roomType     The type of room to reserve
-     * @param discount     The discount code the guest used.
-     * @return `true` if the reservation was successfully added, regardless if the discount is applied or not; `false` otherwise.
+     * @param roomType     The type of room to reserve.
+     * @param discount     The discount code to apply.
+     * @return {@code true} if the reservation was successfully added, regardless of whether the discount was applied; {@code false} otherwise.
      */
     public boolean reserveRoom(Hotel hotel, String guestName, int checkInDate,
                                int checkOutDate, String roomType, String discount){
@@ -217,9 +217,9 @@ public class ReservationSystem {
     /**
      * Removes a reservation from the selected hotel.
      *
-     * @param hotel     the selected hotel
-     * @param guestName the name of the guest who reserved the room
-     * @return 'true' if a reservation is successfully removed; 'false' otherwise.
+     * @param hotel     The selected hotel.
+     * @param guestName The name of the guest who made the reservation.
+     * @return {@code true} if the reservation was successfully removed; {@code false} otherwise.
      */
     public boolean removeReservation(Hotel hotel, String guestName){
         if(hotel != null && hotel.getReservationManager().findReservation(guestName) != null) { //only remove reservation if the given hotel is found
@@ -229,10 +229,10 @@ public class ReservationSystem {
     }
 
     /**
-     * Removes a hotel from the hotel list.
+     * Removes a hotel from the reservation system.
      *
-     * @param hotelName the name of the hotel to be removed.
-     * @return 'true' if a hotel is successfully removed; 'false' otherwise.
+     * @param hotelName The name of the hotel to be removed.
+     * @return {@code true} if the hotel was successfully removed; {@code false} otherwise.
      */
     public boolean removeHotel(String hotelName) {
         for (Hotel hotel : hotelList) { //find hotel with the same name as the given hotelName in the list

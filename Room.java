@@ -2,15 +2,22 @@
  * Represents a room of a hotel. Serves as a template for the different types of rooms.
  */
 public abstract class Room {
-    protected int roomName; //attribute for the room's name
-    protected double roomPrice; // attribute for the room's price
+    /**
+     * Attribute for the room's name
+     */
+    protected int roomName;
+    /**
+     * Attribute for the room's price
+     */
+    protected double roomPrice;
     private int[] reservedDates; //array of integers that serves as a record of the room's reserved dates.
     //(E.g. If only Day 1 is reserved, reservedDates[0] = 1 and reservedDates[1] onwards is 0.)
 
     /**
      * Constructs a new Room.
      *
-     * @param hotel the hotel the room belongs to.
+     * @param hotel the hotel to which the room belongs.
+     * @throws NullPointerException if the hotel is null.
      */
     public Room(Hotel hotel) {
         if(hotel == null)
@@ -45,7 +52,7 @@ public abstract class Room {
     /**
      * Gets the room's base price.
      *
-     * @return the Room's base price.
+     * @return the room's base price.
      */
     public double getRoomPrice() {
         return roomPrice;
@@ -54,7 +61,7 @@ public abstract class Room {
     /**
      * Gets the room's record of reserved dates.
      *
-     * @return the array of reserved dates of the Room Instance.
+     * @return the array of reserved dates of the Room instance.
      */
     public int[] getReservedDates() {
         return reservedDates;
@@ -75,10 +82,11 @@ public abstract class Room {
     }
 
     /**
-     * Checks if the Room instance is available at a particular date.
+     * Checks if the Room instance is available on a particular date.
      *
-     * @param date the given date to check the Room for
-     * @return true if it is available at the given date, false otherwise.
+     * @param date the given date to check the room for.
+     * @return true if it is available on the given date, false otherwise.
+     * @throws IllegalArgumentException if the date is not within the range of 1 to 31.
      */
     public boolean isAvailable(int date) {
         if(date < 1 || date > 31)
@@ -87,9 +95,10 @@ public abstract class Room {
     }
 
     /**
-     * Adds/Records dates in the Room's records for reservation.
+     * Adds/records dates in the room's records for reservation.
      *
      * @param reserve the given Reservation to be added.
+     * @throws NullPointerException if the reservation is null.
      */
     public void addReservedDates(Reservation reserve) {
         if(reserve == null)
@@ -99,9 +108,10 @@ public abstract class Room {
     }
 
     /**
-     * Removes recorded dates in the Room's records for reservation.
+     * Removes recorded dates in the room's records for reservation.
      *
      * @param reserve the given Reservation to be removed.
+     * @throws IllegalArgumentException if the reservation is null.
      */
     public void removeReservedDates(Reservation reserve) {
         if(reserve == null)

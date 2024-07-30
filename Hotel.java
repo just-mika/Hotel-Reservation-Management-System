@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Represents a hotel, managing its rooms and reservations.
- * It provides methods to add/remove rooms, manage reservations, and compute earnings.
+ * Represents a hotel, containing managers for its rooms, reservations, and date price rates.
  */
 public class Hotel {
     private String hotelName; //attribute for hotel name
@@ -13,9 +12,11 @@ public class Hotel {
 
     /**
      * Constructs a new `Hotel` with the specified name.
-     * Initializes the room list, reservation list, and default room price.
+     * Initializes the room manager, reservation manager, date price manager,
+     * and sets a default base price for the rooms.
      *
      * @param name The name of the hotel.
+     * @throws NullPointerException if the provided name is null.
      */
     public Hotel(String name) {
         if(name == null)
@@ -36,7 +37,7 @@ public class Hotel {
     /**
      * Computes the total earnings from all reservations in the hotel.
      *
-     * @return The total earnings.
+     * @return The total earnings from reservations.
      */
     public double computeEarnings() {
         double totalEarnings = 0.0; //declare variable for total earnings
@@ -58,7 +59,8 @@ public class Hotel {
     /**
      * Sets the name of the hotel.
      *
-     * @param hotelName The edited name of the hotel.
+     * @param hotelName The new name of the hotel.
+     * @throws IllegalArgumentException if the provided name is null.
      */
     public void setHotelName(String hotelName) {
         if(hotelName == null)
@@ -78,7 +80,8 @@ public class Hotel {
     /**
      * Sets the base price of the hotel's rooms.
      *
-     * @param price The new price of the room.
+     * @param price The new base price of the rooms.
+     * @throws IllegalArgumentException if the provided price is less than 100.0.
      */
     public void setBasePrice(double price) {
         if(price < 100.0)
@@ -96,7 +99,7 @@ public class Hotel {
 
     /**
      * Gets the hotel's reservation manager.
-     * 
+     *
      * @return The hotel's reservation manager.
      */
     public ReservationManager getReservationManager(){

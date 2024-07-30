@@ -10,24 +10,32 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.CardLayout;
-import javax.swing.JOptionPane;
 
 
 public class ManageHotelView {
     private JFrame mainFrame;
-    private JLabel menuLbl, titleLbl, chooseLbl, feedbackLbl, titleLbl_1, changeNameLbl, showRoomsLbl,  enterRoomsToAddLbl, showMaxRoomsLbl, enterRoomsToRemoveLbl, showCurrentPriceLbl, enterRoomPriceLbl,
-    removeGuestLbl, removeRoomNoLbl, removeCheckInLbl, removeCheckOutLbl, reservationLbl, hotelNameLbl, NumRoomLbl, MnthEarnLbl,
-    feedbackLbl_2, feedbackLbl_3, feedbackLbl_4, feedbackLbl_5, feedbackLbl_6, feedbackLbl_7, feedbackLbl_8, roomTypeLbl, updateRoomsLbl, roomTypeLbl_2, updateRoomsLbl_2;
-    //private JButton hotelListButtons; buttons for hotel names created
-    private JButton backBtn, changeNameBtn, addRoomBtn, removeRoomBtn, updatePriceBtn, removeReserveBtn, removeHotelBtn, backToMainBtn, manageBtn, backToManageBtn_1, backToManageBtn_2, backToManageBtn_3,
-            backToManageBtn_4, removeBtn, changeBtn, addBtn, removeBtn_2, uPBtn;
+    private JLabel chooseLbl, feedbackLbl, changeNameLbl, showRoomsLbl, enterRoomsToAddLbl, showMaxRoomsLbl, 
+               enterRoomsToRemoveLbl, showCurrentPriceLbl, enterRoomPriceLbl, removeGuestLbl, removeRoomNoLbl, 
+               removeCheckInLbl, removeCheckOutLbl, reservationLbl, hotelNameLbl, NumRoomLbl, MnthEarnLbl,
+               feedbackLbl_2, feedbackLbl_3, feedbackLbl_4, feedbackLbl_5, feedbackLbl_6, feedbackLbl_7, 
+               feedbackLbl_8, roomTypeLbl, updateRoomsLbl, roomTypeLbl_2, updateRoomsLbl_2, titleLbl, 
+               titleLbl_1, titleLbl_2, titleLbl_3, titleLbl_4, titleLbl_5, titleLbl_6, titleLbl_7, 
+               titleLbl_8, titleLbl_9, feedbackLbl_9, feedbackLbl_10, enterDateLbl, enterPercentLbl;
+    private JButton backBtn, changeNameBtn, addRoomBtn, removeRoomBtn, updatePriceBtn, removeReserveBtn, 
+                removeHotelBtn, backToMainBtn, manageBtn, backToManageBtn_1, backToManageBtn_2, 
+                backToManageBtn_3, backToManageBtn_4, removeBtn, changeBtn, addBtn, removeBtn_2, 
+                uPBtn, enterBtn, backBtn_2, datePriceBtn, backToManageBtn_5;
     private ImageIcon titleImageIcon, logoImageIcon, titleImageIcon_1, titleImageIcon_2;
-    private JPanel hotelListPanel, manageHotelPanel, changeNamePanel, addRoomsPanel, removeRoomsPanel, updatePricePanel, removeReservationPanel, reserveListPanel, highLvlInfoPanel;
-    private JTextField changeNameTF, addRoomsTF, removeRoomsTF, updatePriceTF, removeReserveTF, chooseHotelTF, roomTypeTF_2;
-    private JPanel cardPanel;
-    private JLabel titleLbl_2, titleLbl_3, titleLbl_4, titleLbl_5, titleLbl_6, titleLbl_7, titleLbl_8, titleLbl_9;
+    private JPanel hotelListPanel, manageHotelPanel, changeNamePanel, addRoomsPanel, removeRoomsPanel, 
+               updatePricePanel, removeReservationPanel, reserveListPanel, highLvlInfoPanel, cardPanel, 
+               priceModifierPanel;
+    private JTextField changeNameTF, addRoomsTF, removeRoomsTF, updatePriceTF, removeReserveTF, chooseHotelTF, 
+                   roomTypeTF_2, dateOneTF, percentTF;
     private JTextArea hotelListTA, reserveListTA;
-    private JRadioButton addStandardRoom, addDeluxeRoom, addExecutiveRoom, removeStandardRoom, removeDeluxeRoom, removeExecutiveRoom;
+    private JRadioButton addStandardRoom, addDeluxeRoom, addExecutiveRoom, removeStandardRoom, 
+                     removeDeluxeRoom, removeExecutiveRoom;
+    private ButtonGroup roomTypeSelect, roomTypeSelect2;
+
     public ManageHotelView(){
         this.mainFrame = new JFrame("Manage Hotel");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,50 +52,43 @@ public class ManageHotelView {
         titleLbl_1.setIcon(titleImageIcon_1);
         titleLbl_1.setBounds(230, 50, 650, 30);
 
-        titleImageIcon = new ImageIcon(getClass().getResource("HRS Title_ManageHotel.png"));
         titleLbl_2 = new JLabel("");
         titleLbl_2.setIcon(titleImageIcon);
         titleLbl_2.setBounds(230, 50, 650, 30);
 
-        titleImageIcon = new ImageIcon(getClass().getResource("HRS Title_ManageHotel.png"));
         titleLbl_3 = new JLabel("");
         titleLbl_3.setIcon(titleImageIcon);
         titleLbl_3.setBounds(230, 50, 650, 30);
 
-        titleImageIcon = new ImageIcon(getClass().getResource("HRS Title_ManageHotel.png"));
         titleLbl_2 = new JLabel("");
         titleLbl_2.setIcon(titleImageIcon);
         titleLbl_2.setBounds(230, 50, 650, 30);
 
-        titleImageIcon = new ImageIcon(getClass().getResource("HRS Title_ManageHotel.png"));
         titleLbl_4 = new JLabel("");
         titleLbl_4.setIcon(titleImageIcon);
         titleLbl_4.setBounds(230, 50, 650, 30);
 
-        titleImageIcon = new ImageIcon(getClass().getResource("HRS Title_ManageHotel.png"));
         titleLbl_5 = new JLabel("");
         titleLbl_5.setIcon(titleImageIcon);
         titleLbl_5.setBounds(230, 50, 650, 30);
 
-        titleImageIcon = new ImageIcon(getClass().getResource("HRS Title_ManageHotel.png"));
         titleLbl_6 = new JLabel("");
         titleLbl_6.setIcon(titleImageIcon);
         titleLbl_6.setBounds(230, 50, 650, 30);
 
-        titleImageIcon_2 = new ImageIcon(getClass().getResource("HRS Title_ManageHotel.png"));
+        titleImageIcon_2 = new ImageIcon(getClass().getResource("HRS Title_ManageHotel_ChooseReservation.png"));
         titleLbl_7 = new JLabel("");
         titleLbl_7.setIcon(titleImageIcon_2);
         titleLbl_7.setBounds(230, 50, 650, 30);
 
-        titleImageIcon = new ImageIcon(getClass().getResource("HRS Title_ManageHotel_ChooseReservation.png"));
         titleLbl_8 = new JLabel("");
         titleLbl_8.setIcon(titleImageIcon);
         titleLbl_8.setBounds(230, 50, 650, 30);
 
-        titleImageIcon = new ImageIcon(getClass().getResource("HRS Title_ManageHotel_ChooseReservation.png"));
         titleLbl_9 = new JLabel("");
         titleLbl_9.setIcon(titleImageIcon);
         titleLbl_9.setBounds(230, 50, 650, 30);
+
 
         logoImageIcon = new ImageIcon(getClass().getResource("HRS Logo.png"));
         mainFrame.setIconImage(logoImageIcon.getImage());
@@ -118,6 +119,10 @@ public class ManageHotelView {
         this.removeHotelBtn.setPreferredSize(new Dimension(620, 30));
         this.removeHotelBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
+        this.datePriceBtn = new JButton("Modify Date-Price");
+        this.datePriceBtn.setPreferredSize(new Dimension(620, 30));
+        this.datePriceBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
         this.backToMainBtn = new JButton("Back to Main Menu");
         this.backToMainBtn.setPreferredSize(new Dimension(620, 30));
         this.backToMainBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
@@ -136,6 +141,7 @@ public class ManageHotelView {
         manageHotelPanel.add(updatePriceBtn);
         manageHotelPanel.add(removeReserveBtn);
         manageHotelPanel.add(removeHotelBtn);
+        manageHotelPanel.add(datePriceBtn);
         manageHotelPanel.add(backToMainBtn);
 
 
@@ -196,6 +202,10 @@ public class ManageHotelView {
         this.changeBtn.setPreferredSize(new Dimension(150, 30));
         this.changeBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
+        this.backToManageBtn_5 = new JButton("Back to Manage Hotel");
+        this.backToManageBtn_5 .setPreferredSize(new Dimension(200, 30));
+        this.backToManageBtn_5 .setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
         this.feedbackLbl_3 = new JLabel("");
         this.feedbackLbl_3.setPreferredSize(new Dimension(620, 30));
         this.feedbackLbl_3.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
@@ -206,6 +216,7 @@ public class ManageHotelView {
         changeNamePanel.add(changeNameLbl);
         changeNamePanel.add(changeNameTF);
         changeNamePanel.add(changeBtn);
+        changeNamePanel.add(backToManageBtn_5);
         changeNamePanel.add(feedbackLbl_3);
 
         //add Rooms Panel
@@ -229,7 +240,7 @@ public class ManageHotelView {
         this.addDeluxeRoom = new JRadioButton("Deluxe");
         this.addExecutiveRoom = new JRadioButton("Executive");
 
-        ButtonGroup roomTypeSelect = new ButtonGroup();
+        roomTypeSelect = new ButtonGroup();
         roomTypeSelect.add(addStandardRoom);
         roomTypeSelect.add(addDeluxeRoom);
         roomTypeSelect.add(addExecutiveRoom);
@@ -305,7 +316,7 @@ public class ManageHotelView {
         this.removeDeluxeRoom = new JRadioButton("Deluxe");
         this.removeExecutiveRoom = new JRadioButton("Executive");
 
-        ButtonGroup roomTypeSelect2 = new ButtonGroup();
+        roomTypeSelect2 = new ButtonGroup();
         roomTypeSelect2.add(removeStandardRoom);
         roomTypeSelect2.add(removeDeluxeRoom);
         roomTypeSelect2.add(removeExecutiveRoom);
@@ -458,10 +469,52 @@ public class ManageHotelView {
 
         highLvlInfoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         highLvlInfoPanel.setPreferredSize(new Dimension(650, 1080));
-        highLvlInfoPanel.add(titleLbl_9);
+        highLvlInfoPanel.add(titleLbl_8);
         highLvlInfoPanel.add(hotelNameLbl);
         highLvlInfoPanel.add(NumRoomLbl);
         highLvlInfoPanel.add(MnthEarnLbl);
+
+        //date Price Panel
+        this.enterDateLbl = new JLabel("Enter Date: ");
+        this.enterDateLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+       this.dateOneTF = new JTextField();
+       this.dateOneTF.setColumns(2);
+       this.dateOneTF.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+       this.enterBtn = new JButton("Enter");
+       this.enterBtn.setPreferredSize(new Dimension(650, 30));
+       this.enterBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+       this.backBtn_2 = new JButton("Back To Main Menu");
+       this.backBtn_2.setPreferredSize(new Dimension(650, 30));
+       this.backBtn_2.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+       this.enterPercentLbl = new JLabel("Enter Percentage: ");
+       this.percentTF = new JTextField();
+       this.percentTF.setColumns(3);
+       this.enterPercentLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+       this.percentTF.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+       this.feedbackLbl_9 = new JLabel("");
+       this.feedbackLbl_9.setPreferredSize(new Dimension(620, 30));
+       this.feedbackLbl_9.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
+       this.feedbackLbl_10 = new JLabel("");
+       this.feedbackLbl_10.setPreferredSize(new Dimension(620, 30));
+       this.feedbackLbl_10.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,20));
+
+       priceModifierPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+       priceModifierPanel.setPreferredSize(new Dimension(650, 1080));
+        priceModifierPanel.add(titleLbl_9);
+        priceModifierPanel.add(feedbackLbl_9);
+        priceModifierPanel.add(enterDateLbl);
+        priceModifierPanel.add(dateOneTF);
+        priceModifierPanel.add(enterPercentLbl);
+        priceModifierPanel.add(percentTF);
+        priceModifierPanel.add(enterBtn);
+        priceModifierPanel.add(backBtn_2);
+        priceModifierPanel.add(feedbackLbl_10);
 
         cardPanel = new JPanel(new CardLayout());
         cardPanel.add(manageHotelPanel, "ManageHotelPanel");
@@ -470,10 +523,10 @@ public class ManageHotelView {
         cardPanel.add(addRoomsPanel, "AddRoomsPanel");
         cardPanel.add(removeRoomsPanel, "RemoveRoomsPanel");
         cardPanel.add(updatePricePanel, "UpdatePricePanel");
-
         cardPanel.add(removeReservationPanel, "RemoveReservationPanel");
         cardPanel.add(highLvlInfoPanel, "HighLvlInfoPanel");
         cardPanel.add(reserveListPanel, "ReserveListPanel");
+        cardPanel.add(priceModifierPanel, "PriceModifierPanel");
         
 
         mainFrame.add(cardPanel);
@@ -554,6 +607,19 @@ public class ManageHotelView {
         this.backBtn.addActionListener(al);
     }
 
+    public void enterPriceAL(ActionListener al){
+        this.enterBtn.addActionListener(al);
+    }
+
+    public void goToManageAL_6(ActionListener al){
+        this.backBtn_2.addActionListener(al);
+    }
+
+    public void goToManageAL_7(ActionListener al){
+        this.backToManageBtn_5.addActionListener(al);
+    }
+
+
     public void show(boolean visible) {
         mainFrame.setVisible(visible);
     }
@@ -583,6 +649,46 @@ public class ManageHotelView {
     public void setFeedbackLbl_2(String text){
         this.feedbackLbl_2.setText(text);
     }
+
+
+    public void setFeedbackLbl_9(String text){
+        this.feedbackLbl_9.setText(text);
+    }
+
+    public void setFeedbackLbl_10(String text){
+        this.feedbackLbl_10.setText(text);
+    }
+
+    public int getDateText() {
+        try {
+            return Integer.parseInt(dateOneTF.getText());
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid input: " + dateOneTF.getText() + " is not a valid integer.");
+            return -1; 
+        }
+    }
+
+    public void clearTF_9(){
+        this.dateOneTF.setText("");
+    }
+
+    public double getPercetageText() {
+        try {
+            return Double.parseDouble(percentTF.getText());
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid input: " + percentTF.getText() + " is not a valid integer.");
+            return -1; 
+        }
+    }
+
+    public void clearTF_10(){
+        this.percentTF.setText("");
+    }
+
+    public void modifyPriceAL(ActionListener al){
+        this.datePriceBtn.addActionListener(al);
+    }
+
 
     public String getChooseHotelText() {
         return chooseHotelTF.getText();
@@ -713,6 +819,15 @@ public class ManageHotelView {
     }
     public void setRemoveReserveEnabled(boolean enabled){this.removeReserveBtn.setEnabled(enabled);}
     public void setRemoveHotelEnabled(boolean enabled){this.removeHotelBtn.setEnabled(enabled);}
+    public void setUpdatePriceEnabled(boolean enabled){this.updatePriceBtn.setEnabled(enabled);}
+    public void setAddRoomsEnabled(boolean enabled){
+        this.addRoomBtn.setEnabled(enabled);
+        this.addBtn.setEnabled(enabled);
+    }
+    public void setRemoveRoomsEnabled(boolean enabled){
+        this.removeRoomBtn.setEnabled(enabled);
+        this.removeBtn_2.setEnabled(enabled);
+    }
 
     public boolean isAddStandardSelected(){
         if(addStandardRoom.isSelected())
@@ -747,5 +862,10 @@ public class ManageHotelView {
     }
     public void setReserveListTA(String text){
         this.reserveListTA.setText(text);
+    }
+
+    public void clearButtonSelection(){
+        roomTypeSelect.clearSelection();
+        roomTypeSelect2.clearSelection();
     }
 }

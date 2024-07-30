@@ -10,7 +10,7 @@ import java.util.List;
 public class ViewHotelView {
     private JFrame mainFrame;
     private JLabel titleLbl, titleLbl_1, titleLbl_2, titleLbl_3, chooseLbl, feedbackLbl, feedbackLbl_2, feedbackLbl_3, feedbackLbl_4, hotelNameLbl, NumRoomLbl, MnthEarnLbl, titleLbl_4, titleLbl_5, titleLbl_6, titleLbl_7, titleLbl_8, titleLbl_9;
-    private JLabel showAvailRoomLbl, totalBookedLbl, roomNameLbl, roomTypeLbl, roomPriceLbl, reservedDatesLbl, guestNameLbl, roomNumLbl, checkInLbl, checkOutLbl, pricePerNytLbl, totalPriceLbl, inputDateLbl, inputRoomNameLbl, inputReservaLbl;
+    private JLabel showAvailRoomLbl, totalBookedLbl, roomNameLbl, roomTypeLbl, roomPriceLbl, reservedDatesLbl, guestNameLbl, roomNumLbl, checkInLbl, checkOutLbl, pricePerNytLbl, discountLbl, totalPriceLbl, inputDateLbl, inputRoomNameLbl, inputReservaLbl;
     private JButton highInfoBtn, lowInfoBtn, backToMainBtn, backBtn;
     private JPanel highLvlPanel, lowLvlPanel, hotelListPanel, mainPanel, cardPanel, chkAvailPanel, viewRoomPanel, viewReservePanel, inputDatePanel, roomListPanel, reservationListPanel; 
     private JButton backToViewBtn_1, viewBtn, checkBtn, chooseRoomBtn, chooseReserveBtn;
@@ -406,6 +406,10 @@ public class ViewHotelView {
         this.pricePerNytLbl.setPreferredSize(new Dimension(600, 30));
         this.pricePerNytLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
+        this.discountLbl = new JLabel("Price-per-Night: ");
+        this.discountLbl.setPreferredSize(new Dimension(600, 30));
+        this.discountLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
+
         this.totalPriceLbl = new JLabel("Total Price: ");
         this.totalPriceLbl.setPreferredSize(new Dimension(600, 30));
         this.totalPriceLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
@@ -422,10 +426,9 @@ public class ViewHotelView {
         viewReservePanel.add(checkInLbl);
         viewReservePanel.add(checkOutLbl);
         viewReservePanel.add(pricePerNytLbl);
+        viewReservePanel.add(discountLbl);
         viewReservePanel.add(totalPriceLbl);
         viewReservePanel.add(backToLowBtn_3);
-        
-
 
         //main
         mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -628,7 +631,9 @@ public class ViewHotelView {
             if (room.computeReservedDates() > 0) {
                 for (int i = 0; i < 31; i++) {
                     if (reservedDates[i] != 0) {
-                        sb.append(i+1).append(", ");
+                        if(i > 0)
+                            sb.append(", ");
+                        sb.append(i+1);
                     }
                 }
             } else {
@@ -645,11 +650,30 @@ public class ViewHotelView {
 
     public void displayReservations(Reservation reservation, Hotel hotel) {
         if (reservation != null && hotel != null) {
+            int date;
+            String discount = "";
+            if(reservation instanceof DiscountedReservation) {
+                discount = ((DiscountedReservation) reservation).getDiscountCode();
+                if(discount.equals("STAY4_GET1"))
+                    date = reservation.getCheckInDate() + 1;
+                else
+                    date = reservation.getCheckInDate();
+            } else
+                date = reservation.getCheckInDate();
             guestNameLbl.setText("Guest Name: " + reservation.getGuestName());
             roomNumLbl.setText("Room No.: " + reservation.getRoom().getRoomName());
             checkInLbl.setText("Check-In Date: " + reservation.getCheckInDate());
             checkOutLbl.setText("Check-Out Date: " + reservation.getCheckOutDate());
-            pricePerNytLbl.setText("Price-per-Night: $" + String.format("%.2f", reservation.getDatePrice(reservation.getCheckInDate(), hotel)));
+            pricePerNytLbl.setText("Price-per-Night: $" + String.format("%.2f", reservation.getDatePrice(date, hotel)) + " x " + (reservation.checkOutDate - reservation.checkInDate) + " nights");
+
+            if(discount.equals("I_WORK_HERE"))
+                discountLbl.setText("Discount: I_WORK_HERE (less 10% of $" + String.format("%.2f",(reservation.getDatePrice(date, hotel)) * (reservation.checkOutDate - reservation.checkInDate))+ ")");
+            else if(discount.equals("STAY4_GET1"))
+                discountLbl.setText("Discount: STAY4_GET1 (less $" + String.format("%.2f",reservation.getDatePrice(date, hotel))+")");
+            else if(discount.equals("PAYDAY"))
+                discountLbl.setText("Discount: PAYDAY (less 7% of $" + String.format("%.2f",(reservation.getDatePrice(date, hotel)) * (reservation.checkOutDate - reservation.checkInDate))+ ")");
+            else
+                discountLbl.setText("Discount: (none)");
             totalPriceLbl.setText("Total Price: $" + String.format("%.2f", reservation.computeTotalPrice(hotel)));
         }
     }

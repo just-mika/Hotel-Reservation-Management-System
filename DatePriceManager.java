@@ -8,7 +8,7 @@ public class DatePriceManager {
     private ArrayList<DatePriceRate> datePriceRateList; //attribute for list of date price rates
 
     /**
-     * Constructs the date price manager of a hotel.
+     * Constructs a DatePriceManager with default rates for all dates.
      */
     public DatePriceManager(){
         this.datePriceRateList = new ArrayList<DatePriceRate>();
@@ -22,10 +22,11 @@ public class DatePriceManager {
 
 
     /**
-     * Finds the date price rate by a given date.
+     * Finds the date price rate for a given date.
      *
-     * @param date the given date to find in the list.
-     * @return the date price rate of the given date; 'null' otherwise.
+     * @param date the date to find the price rate for
+     * @return the DatePriceRate for the given date; `null` if not found
+     * @throws IllegalArgumentException if the date is not within the range of 1 to 31
      */
     public DatePriceRate findDate(int date) {
         for (DatePriceRate datePriceRate : datePriceRateList) {
@@ -37,10 +38,12 @@ public class DatePriceManager {
     }
 
     /**
-     * Changes the price rate of a given date.
+     * Changes the price rate for a given date.
      *
-     * @param date the given date to change the rate of.
-     * @param rate the new rate value.
+     * @param date the date for which the rate needs to be changed
+     * @param rate the new rate value
+     * @throws IllegalArgumentException if the date is not within the range of 1 to 31
+     * @throws IllegalArgumentException if the rate is negative
      */
     public void changeDatePrice(int date, double rate){
         if(date < 1 || date > 31)
@@ -50,6 +53,4 @@ public class DatePriceManager {
         if(this.findDate(date) != null) //if date is found, set rate.
             findDate(date).setRate(rate);
     }
-
-
 }

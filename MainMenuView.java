@@ -9,13 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+
 
 
 public class MainMenuView {
     private JFrame mainFrame;
     private JLabel mainLbl, titleLbl;
-    private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, datePriceBtn, exitBtn;
+    private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, exitBtn;
     private ImageIcon titleImageIcon, logoImageIcon;
 
     public MainMenuView(){
@@ -54,10 +54,6 @@ public class MainMenuView {
         this.bookRoomBtn.setPreferredSize(new Dimension(620, 30));
         this.bookRoomBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.datePriceBtn = new JButton("Modify Date-Price");
-        this.datePriceBtn.setPreferredSize(new Dimension(620, 30));
-        this.datePriceBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
-
         this.exitBtn = new JButton("Exit Program");
         this.exitBtn.setPreferredSize(new Dimension(620, 30));
         this.exitBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
@@ -69,7 +65,6 @@ public class MainMenuView {
         this.mainFrame.add(viewHotelBtn);
         this.mainFrame.add(manageHotelBtn);
         this.mainFrame.add(bookRoomBtn);
-        this.mainFrame.add(datePriceBtn);
         this.mainFrame.add(exitBtn);
 
 
@@ -91,9 +86,6 @@ public class MainMenuView {
         this.bookRoomBtn.addActionListener(al);
     }
 
-    public void modifyPriceAL(ActionListener al){
-        this.datePriceBtn.addActionListener(al);
-    }
 
     public void exitProgramAL(ActionListener al){
         this.exitBtn.addActionListener(al);
@@ -102,7 +94,6 @@ public class MainMenuView {
     public void setViewHotelEnabled(boolean enabled){this.viewHotelBtn.setEnabled(enabled);}
     public void setManageHotelEnabled(boolean enabled){this.manageHotelBtn.setEnabled(enabled);}
     public void setBookRoomEnabled(boolean enabled){this.bookRoomBtn.setEnabled(enabled);}
-    public void setModifyPrice(boolean enabled){this.datePriceBtn.setEnabled(enabled);}
 
     public void show(boolean visible) {
         mainFrame.setVisible(visible);

@@ -1,11 +1,12 @@
 /**
- * Represents a Deluxe room in a hotel. This room's price is 20% higher compared to Standard room.
+ * Represents a Deluxe room in a hotel. This room's price is 20% higher compared to a Standard room.
  */
 public class DeluxeRoom extends Room{
     /**
      * Constructs a new Deluxe Room.
      *
-     * @param hotel the hotel the room belongs to.
+     * @param hotel the hotel to which the room belongs.
+     * @throws NullPointerException if the hotel is null.
      */
     public DeluxeRoom(Hotel hotel){
         super(hotel); //Instantiate a new room through the Room class
@@ -15,9 +16,10 @@ public class DeluxeRoom extends Room{
     }
 
     /**
-     * Sets the room's price for the Deluxe room with a given value.
+     * Sets the price for the Deluxe room.
      *
      * @param roomPrice the base value to be set as the price.
+     * @throws IllegalArgumentException if the roomPrice is less than 100.0.
      */
     public void setRoomPrice(double roomPrice) {
         if(roomPrice < 100.0)
@@ -26,7 +28,7 @@ public class DeluxeRoom extends Room{
     }
 
     /**
-     * Gets this room's respective type.
+     * Gets the type of this room.
      *
      * @return the room type of the Room instance.
      */

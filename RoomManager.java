@@ -19,7 +19,9 @@ public class RoomManager {
      * Adds a new room to the hotel.
      *
      * @param hotel the hotel to add a room to.
-     * @param type the type of room to add.
+     * @param type  the type of room to add.
+     * @throws NullPointerException     if the room type is null.
+     * @throws IllegalArgumentException if the number of rooms exceeds 50 or if the room type does not exist.
      */
     public void addRoom(Hotel hotel, String type) {
         if(type == null)
@@ -40,10 +42,11 @@ public class RoomManager {
     }
 
     /**
-     * Finds the index of a room by its name.
+     * Finds a room by its name.
      *
-     * @param roomName The name of the room to find.
-     * @return The room itself if it is found; 'null' if not found.
+     * @param roomName the name of the room to find.
+     * @return the room if it is found; null if not found.
+     * @throws IllegalArgumentException if the room name is not within the valid range.
      */
     public Room findRoom(int roomName){
         if(roomName < 101 || roomName > 350)
@@ -59,6 +62,8 @@ public class RoomManager {
      * Removes a room from the hotel.
      *
      * @param roomType the type of room to remove.
+     * @throws NullPointerException     if the room type is null.
+     * @throws IllegalArgumentException if the room type does not exist or if the number of rooms is less than 1.
      */
     public void removeRoom(String roomType) {
         if(roomType == null)
@@ -84,7 +89,9 @@ public class RoomManager {
      * Gets the total number of rooms in the hotel with a given type.
      *
      * @param type the type of room to count.
-     * @return The total number of rooms of the given type.
+     * @return the total number of rooms of the given type.
+     * @throws NullPointerException     if the room type is null.
+     * @throws IllegalArgumentException if the room type does not exist.
      */
     public int countRooms(String type){
         if(type == null)
@@ -102,7 +109,7 @@ public class RoomManager {
     /**
      * Checks if the hotel is fully booked for all dates (1-31).
      *
-     * @return `true` if all rooms are fully booked; `false` otherwise.
+     * @return {@code true} if all rooms are fully booked; {@code false} otherwise.
      */
     public boolean isFullyBooked() {
         for (Room room : this.getRoomList()) {
@@ -122,8 +129,9 @@ public class RoomManager {
     /**
      * Computes the number of available rooms for a given date, regardless of its type.
      *
-     * @param date The date to check for availability.
-     * @return The number of total available rooms.
+     * @param date the date to check for availability.
+     * @return the number of total available rooms.
+     * @throws IllegalArgumentException if the date is not within the valid range.
      */
     public int countAvailableRooms(int date) {
         if(date < 1 || date > 31)
@@ -140,9 +148,11 @@ public class RoomManager {
     /**
      * Computes the number of available rooms for a given date with a specified room type.
      *
-     * @param date The date to check for availability.
+     * @param date the date to check for availability.
      * @param type the type of room to count.
-     * @return The number of total available rooms of the given type.
+     * @return the number of total available rooms of the given type.
+     * @throws IllegalArgumentException if the date is not within the valid range or if the room type does not exist.
+     * @throws NullPointerException     if the room type is null.
      */
     public int countAvailableRooms(int date, String type) {
         if(date < 1 || date > 31)
@@ -165,8 +175,9 @@ public class RoomManager {
     /**
      * Computes the number of booked rooms for a given date, regardless of its type.
      *
-     * @param date The date to check for bookings.
-     * @return The number of booked rooms.
+     * @param date the date to check for bookings.
+     * @return the number of booked rooms.
+     * @throws IllegalArgumentException if the date is not within the valid range.
      */
     public int countBookedRooms(int date) {
         if(date < 1 || date > 31)
@@ -183,9 +194,11 @@ public class RoomManager {
     /**
      * Computes the number of booked rooms for a given date with a specified room type.
      *
-     * @param date The date to check for bookings.
+     * @param date the date to check for bookings.
      * @param type the type of room to count.
-     * @return The number of total booked rooms of the given type.
+     * @return the number of total booked rooms of the given type.
+     * @throws IllegalArgumentException if the date is not within the valid range or if the room type does not exist.
+     * @throws NullPointerException     if the room type is null.
      */
     public int countBookedRooms(int date, String type) {
         if(date < 1 || date > 31)
@@ -207,7 +220,7 @@ public class RoomManager {
     /**
      * Counts the number of unreserved rooms in the hotel, regardless of its type.
      *
-     * @return The number of unreserved rooms.
+     * @return the number of unreserved rooms.
      */
     public int countUnreservedRooms() {
         int ctr = 0; //declare counter
@@ -223,7 +236,9 @@ public class RoomManager {
      * Counts the number of unreserved rooms in the hotel with a specified room type.
      *
      * @param type the type of room to count.
-     * @return The number of unreserved rooms.
+     * @return the number of unreserved rooms.
+     * @throws NullPointerException     if the room type is null.
+     * @throws IllegalArgumentException if the room type does not exist.
      */
     public int countUnreservedRooms(String type) {
         if(type == null)
@@ -243,21 +258,28 @@ public class RoomManager {
     /**
      * Gets the list of rooms in the hotel.
      *
-     * @return The list of rooms.
+     * @return the list of rooms.
      */
     public ArrayList<Room> getRoomList() {
         return roomList;
     }
 
+    /**
+     * Gets the list of available rooms for a given date.
+     *
+     * @param date the date to check for availability.
+     * @return the list of available rooms.
+     * @throws IllegalArgumentException if the date is not within the valid range.
+     */
     public List<Room> getAvailableRooms(int date) {
-    if (date < 1 || date > 31)
-        throw new IllegalArgumentException("Date not within the range of 1 to 31!");
-    List<Room> availableRooms = new ArrayList<>();
-    for (Room room : roomList) {
-        if (room.isAvailable(date)) {
-            availableRooms.add(room);
+        if (date < 1 || date > 31)
+            throw new IllegalArgumentException("Date not within the range of 1 to 31!");
+        List<Room> availableRooms = new ArrayList<>();
+        for (Room room : roomList) {
+            if (room.isAvailable(date)) {
+                availableRooms.add(room);
+            }
         }
+        return availableRooms;
     }
-    return availableRooms;
-}
 }

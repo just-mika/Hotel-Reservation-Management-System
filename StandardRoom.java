@@ -5,7 +5,8 @@ public class StandardRoom extends Room {
     /**
      * Constructs a new Standard Room.
      *
-     * @param hotel the hotel the room belongs to.
+     * @param hotel the hotel to which the room belongs.
+     * @throws NullPointerException if the hotel is null.
      */
     public StandardRoom(Hotel hotel){
         super(hotel); //Instantiate a new room through the Room class
@@ -14,9 +15,10 @@ public class StandardRoom extends Room {
     }
 
     /**
-     * Sets the room's price for the Standard room with a given value.
+     * Sets the price for the Standard room.
      *
      * @param roomPrice the value to be set as the price.
+     * @throws IllegalArgumentException if the roomPrice is less than 100.0.
      */
     public void setRoomPrice(double roomPrice) {
         if(roomPrice < 100.0)
@@ -25,7 +27,7 @@ public class StandardRoom extends Room {
     }
 
     /**
-     * Gets this room's respective type.
+     * Gets the type of this room.
      *
      * @return the room type of the Room instance.
      */

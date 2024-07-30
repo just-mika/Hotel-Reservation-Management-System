@@ -6,13 +6,15 @@ public class DiscountedReservation extends Reservation {
     private String discount; //attribute for the discount code
 
     /**
-     * Constructs a new reservation.
+     * Constructs a new discounted reservation.
      *
      * @param guestName    the name of the guest making the reservation
      * @param room         the room being reserved
-     * @param checkInDate  the check-in date (simplified to a single int value representing to the day)
-     * @param checkOutDate the check-out date (simplified to a single int value representing to the day)
+     * @param checkInDate  the check-in date (simplified to a single int value representing the day)
+     * @param checkOutDate the check-out date (simplified to a single int value representing the day)
      * @param discount     the type of discount applied to the reservation
+     * @throws IllegalArgumentException if the discount code does not exist
+     * @throws NullPointerException     if the room or guest name is null
      */
     public DiscountedReservation(String guestName, Room room, int checkInDate, int checkOutDate, String discount){
         super(guestName, room, checkInDate, checkOutDate); //Instantiate a new reservation through the Reservation class
@@ -24,18 +26,20 @@ public class DiscountedReservation extends Reservation {
     /**
      * Gets the discount code.
      *
-     * @return the discount code used by the guest.
+     * @return the discount code used by the guest
      */
     public String getDiscountCode(){
         return discount;
     }
 
     /**
-     * Gets the reservation's price on a given date, with slightly different implementation.
+     * Gets the reservation's price on a given date, with a different implementation for discounts.
      *
-     * @param date  the given date.
-     * @param hotel the hotel the reservation belongs to.
-     * @return the price of the reservation on the given date.
+     * @param date  the given date
+     * @param hotel the hotel the reservation belongs to
+     * @return the price of the reservation on the given date
+     * @throws IllegalArgumentException if the date is not within the range of 1 to 31
+     * @throws NullPointerException     if the hotel is null
      */
     @Override
     public double getDatePrice(int date, Hotel hotel){
@@ -53,8 +57,9 @@ public class DiscountedReservation extends Reservation {
     /**
      * Computes the current total price of the reservation, applying the respective discount.
      *
-     * @param hotel the hotel the reservation belongs to.
-     * @return the total computed price of the reservation.
+     * @param hotel the hotel the reservation belongs to
+     * @return the total computed price of the reservation
+     * @throws NullPointerException if the hotel is null
      */
     @Override
     public double computeTotalPrice(Hotel hotel){

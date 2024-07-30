@@ -16,7 +16,7 @@ public class ReservationManager {
     /**
      * Gets the list of reservations in the hotel.
      *
-     * @return The list of reservations.
+     * @return the list of reservations
      */
     public ArrayList<Reservation> getReserveList() {
         return reserveList;
@@ -25,12 +25,14 @@ public class ReservationManager {
     /**
      * Adds a reservation to the hotel for a specified guest and date range.
      *
-     * @param hotel the hotel the guest will reserve in
-     * @param guestName The name of the guest.
-     * @param checkInDate The check-in date.
-     * @param checkOutDate The check-out date.
-     * @param roomType the type of room to be reserved
-     * @return `true` if the reservation was successfully added; `false` otherwise.
+     * @param hotel        the hotel the guest will reserve in
+     * @param guestName    the name of the guest
+     * @param checkInDate  the check-in date
+     * @param checkOutDate the check-out date
+     * @param roomType     the type of room to be reserved
+     * @return {@code true} if the reservation was successfully added; {@code false} otherwise
+     * @throws IllegalArgumentException if the check-in date is not less than the check-out date, if the check-in or check-out date is out of range, or if the room type does not exist
+     * @throws NullPointerException     if the guest name or room type is null
      */
     public boolean addReservation(Hotel hotel, String guestName, int checkInDate, int checkOutDate, String roomType){
         if(checkInDate == checkOutDate)
@@ -61,13 +63,15 @@ public class ReservationManager {
     /**
      * Adds a reservation to the hotel for a specified guest and date range with a given discount code.
      *
-     * @param hotel the hotel the guest will reserve in
-     * @param guestName The name of the guest.
-     * @param checkInDate The check-in date.
-     * @param checkOutDate The check-out date.
-     * @param roomType the type of room to be reserved
-     * @param discount The discount code the guest used.
-     * @return `true` if the reservation was successfully added; `false` otherwise.
+     * @param hotel        the hotel the guest will reserve in
+     * @param guestName    the name of the guest
+     * @param checkInDate  the check-in date
+     * @param checkOutDate the check-out date
+     * @param roomType     the type of room to be reserved
+     * @param discount     the discount code the guest used
+     * @return {@code true} if the reservation was successfully added; {@code false} otherwise
+     * @throws IllegalArgumentException if the check-in date is not less than the check-out date, if the check-in or check-out date is out of range, if the room type does not exist, or if the discount code does not exist
+     * @throws NullPointerException     if the guest name, room type, or discount code is null
      */
     public boolean addReservation(Hotel hotel, String guestName, int checkInDate, int checkOutDate, String roomType, String discount){
         if(checkInDate == checkOutDate)
@@ -102,8 +106,9 @@ public class ReservationManager {
     /**
      * Finds the reservation by the guest's name.
      *
-     * @param guestName The name of the guest.
-     * @return The reservation if found; `null` otherwise.
+     * @param guestName the name of the guest
+     * @return the reservation if found; {@code null} otherwise
+     * @throws NullPointerException if the guest name is null
      */
     public Reservation findReservation(String guestName) {
         if(guestName == null)
@@ -118,12 +123,12 @@ public class ReservationManager {
         return null;
     }
 
-
     /**
      * Removes a reservation by the guest's name.
      *
-     * @param guestName The name of the guest.
-     * @return 'true' if reservation is found and removed; `false` otherwise.
+     * @param guestName the name of the guest
+     * @return {@code true} if the reservation is found and removed; {@code false} otherwise
+     * @throws NullPointerException if the guest name is null
      */
     public boolean removeReservation(String guestName) {
         if(guestName == null)
@@ -161,6 +166,4 @@ public class ReservationManager {
         }
         return -1; //return -1 if not
     }
-
-
 }

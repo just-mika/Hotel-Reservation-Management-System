@@ -35,7 +35,7 @@ public class DatePriceController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int date = dpView.getDateText();
-                double percentage = dpView.getPercetageText();
+                double percentage = dpView.getPercetageText()/100;
 
                 int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to change day " + date + " to " +percentage+ "% ?", 
                                                              "Confirm Base Price Change", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);

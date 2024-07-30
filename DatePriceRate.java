@@ -8,7 +8,8 @@ public class DatePriceRate{
     /**
      * Constructs the date's price rate with a given date. Sets the default rate to 1.0.
      *
-     * @param date the date for which the rate is being set.
+     * @param date the date for which the rate is being set
+     * @throws IllegalArgumentException if the date is not between 1 and 31 inclusive
      */
     public DatePriceRate (int date) {
         if (date < 1 || date > 31)
@@ -20,7 +21,7 @@ public class DatePriceRate{
     /**
      * Gets the respective date the price rate should be implemented in.
      *
-     * @return the date.
+     * @return the date
      */
     public int getDate() {
         return date;
@@ -29,7 +30,7 @@ public class DatePriceRate{
     /**
      * Gets the rate that should be implemented on its respective date.
      *
-     * @return the rate for the date.
+     * @return the rate for the date
      */
     public double getRate(){
         return rate;
@@ -38,7 +39,7 @@ public class DatePriceRate{
     /**
      * Sets the rate for the date.
      *
-     * @param rate the new rate to be set.
+     * @param rate the new rate to be set
      */
     public void setRate(double rate){
         this.rate = rate;
