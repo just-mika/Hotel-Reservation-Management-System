@@ -32,9 +32,12 @@ public class CreateHotelView {
         logoImageIcon = new ImageIcon(getClass().getResource("HRS Logo.png"));
         mainFrame.setIconImage(logoImageIcon.getImage());
 
-        this.hotelListTA = new JTextArea("");
+        this.hotelListTA = new JTextArea(50,100);
         this.hotelListTA.setPreferredSize(new Dimension(330, 150));
         this.hotelListTA.setEditable(false);
+	this.hotelListTA.setLineWrap(true);
+        this.hotelListTA.setWrapStyleWord(true);
+	    
         JScrollPane scroll = new JScrollPane(hotelListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setPreferredSize(new Dimension(330, 150));
 
