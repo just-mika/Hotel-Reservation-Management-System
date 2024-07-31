@@ -82,9 +82,12 @@ public class SimulateBookingView {
         this.backBtn.setPreferredSize(new Dimension(220, 30));
         this.backBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.hotelListTA = new JTextArea("");
+        this.hotelListTA = new JTextArea(50,100);
         this.hotelListTA.setPreferredSize(new Dimension(330, 100));
         this.hotelListTA.setEditable(false);
+        this.hotelListTA.setLineWrap(true);
+        this.hotelListTA.setWrapStyleWord(true);
+        
         JScrollPane scroll = new JScrollPane(hotelListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setPreferredSize(new Dimension(330, 100));
 
