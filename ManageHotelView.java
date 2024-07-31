@@ -166,9 +166,12 @@ public class ManageHotelView {
         this.backBtn.setPreferredSize(new Dimension(220, 30));
         this.backBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.hotelListTA = new JTextArea("");
+        this.hotelListTA = new JTextArea(50,100);
         this.hotelListTA.setPreferredSize(new Dimension(330, 100));
         this.hotelListTA.setEditable(false);
+        this.hotelListTA.setLineWrap(true);
+        this.hotelListTA.setWrapStyleWord(true);
+
         JScrollPane scroll = new JScrollPane(hotelListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setPreferredSize(new Dimension(330, 100));
 
@@ -395,9 +398,12 @@ public class ManageHotelView {
         chooseReserveLbl.setPreferredSize(new Dimension(620, 30));
         chooseReserveLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.reserveListTA = new JTextArea("");
+        this.reserveListTA = new JTextArea(50,100);
         this.reserveListTA.setPreferredSize(new Dimension(330, 100));
         this.reserveListTA.setEditable(false);
+        this.reserveListTA.setLineWrap(true);
+        this.reserveListTA.setLineWrap(true);
+
         JScrollPane reserveScroll = new JScrollPane(reserveListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         reserveScroll.setPreferredSize(new Dimension(330, 100));
 
