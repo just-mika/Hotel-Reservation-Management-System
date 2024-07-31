@@ -1,7 +1,6 @@
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -122,9 +121,12 @@ public class ViewHotelView {
         this.viewBtn.setPreferredSize(new Dimension(100, 30));
         this.viewBtn.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.hotelListTA = new JTextArea("");
+        this.hotelListTA = new JTextArea(50, 100);
         this.hotelListTA.setPreferredSize(new Dimension(330, 100));
         this.hotelListTA.setEditable(false);
+        this.hotelListTA.setLineWrap(true);
+        this.hotelListTA.setWrapStyleWord(true);
+
         JScrollPane scroll = new JScrollPane(hotelListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setPreferredSize(new Dimension(330, 100));
 
@@ -238,9 +240,12 @@ public class ViewHotelView {
         this.totalBookedLbl.setPreferredSize(new Dimension(330, 30));
         this.totalBookedLbl.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.availRoomsTA = new JTextArea("");
+        this.availRoomsTA = new JTextArea(50, 100);
         this.availRoomsTA.setPreferredSize(new Dimension(330, 100));
         this.availRoomsTA.setEditable(false);
+        this.availRoomsTA.setLineWrap(true);
+        this.availRoomsTA.setWrapStyleWord(true);
+
         JScrollPane availScroll = new JScrollPane(availRoomsTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         availScroll.setPreferredSize(new Dimension(330, 100));
 
@@ -285,10 +290,14 @@ public class ViewHotelView {
         chooseRoomPanel.add(inputRoomNameTF);
         chooseRoomPanel.add(chooseRoomBtn);
         chooseRoomPanel.add(backToLowBtn_5);
+        
 
-        this.roomListTA = new JTextArea("");
+        this.roomListTA = new JTextArea(50, 100);
         this.roomListTA.setPreferredSize(new Dimension(330, 100));
         this.roomListTA.setEditable(false);
+        this.roomListTA.setLineWrap(true);
+        this.roomListTA.setWrapStyleWord(true);
+
         JScrollPane roomScroll = new JScrollPane(roomListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         roomScroll.setPreferredSize(new Dimension(330, 100));
 
@@ -356,9 +365,12 @@ public class ViewHotelView {
         this.feedbackLbl_4.setPreferredSize(new Dimension(600, 30));
         this.feedbackLbl_4.setFont(new Font("Times New Roman", Font.CENTER_BASELINE,15));
 
-        this.reserveListTA = new JTextArea("");
+        this.reserveListTA = new JTextArea(50, 100);
         this.reserveListTA.setPreferredSize(new Dimension(330, 100));
         this.reserveListTA.setEditable(false);
+        this.reserveListTA.setLineWrap(true);
+        this.reserveListTA.setLineWrap(true);
+        
         JScrollPane scroll2 = new JScrollPane(reserveListTA, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll2.setPreferredSize(new Dimension(330, 100));
 
