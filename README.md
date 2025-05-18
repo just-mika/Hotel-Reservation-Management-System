@@ -13,7 +13,8 @@ In partial fullfilment of the requirements in CCPROG3
         - Three room types supported: Standard, Deluxe, and Executive
         - Has automated room numbering system
     - Allows for checking available rooms in a certain date
-    - - Modify room price rates by date
+        - Modify room price rates by date
+
 - **Simulate booking a room**
     - Allows user to reserve a room in a specific hotel
     - Apply discount codes for special rates
