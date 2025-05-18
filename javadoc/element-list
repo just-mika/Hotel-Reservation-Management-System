@@ -1,1 +1,5 @@
-unnamed package
+model
+model.hotel
+model.hotel.dateprice
+model.hotel.reservation
+model.hotel.room
